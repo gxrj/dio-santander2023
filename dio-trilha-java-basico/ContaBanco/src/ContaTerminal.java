@@ -12,7 +12,7 @@ public class ContaTerminal {
 
         input.close();
 
-        String msg = "Olá %s, obrigado por criar uma conta em nosso banco, sua agência é %s, conta %d. Seu saldo é de %.2f reais";
+        String msg = "Olá %s, obrigado por criar uma conta em nosso banco, sua agência é %s, conta: %d. Seu saldo é de %.2f reais";
         msg += ( saldo > 0  ) ? " e já está disponível para saque. %n" : ". %n";
 
         System.out.printf( msg, nomeCliente, agencia, numero, saldo );
@@ -20,7 +20,7 @@ public class ContaTerminal {
 
     private static String obterAgencia( Scanner input ) {
         System.out.println( "Por favor, digite o número da Agência !" );
-        String agencia = "";
+        String agencia;
         
         do {
             System.out.print( "Agência (apenas números e hífen caso possua dígito): " );
@@ -53,7 +53,7 @@ public class ContaTerminal {
 
     private static String obterNomeCliente( Scanner input ) {
         System.out.println( "Por favor, informe o Nome do Titular !" );
-        String nomeCliente = "";
+        String nomeCliente;
 
         do {
             System.out.print( "Nome do titular(apenas letras são permitidas): " );
