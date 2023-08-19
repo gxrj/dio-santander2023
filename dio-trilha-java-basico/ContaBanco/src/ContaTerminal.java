@@ -13,7 +13,7 @@ public class ContaTerminal {
         input.close();
 
         String msg = "Olá %s, obrigado por criar uma conta em nosso banco, sua agência é %s, conta: %d. Seu saldo é de %.2f reais";
-        msg += ( saldo > 0  ) ? " e já está disponível para saque. %n" : ". %n";
+        msg += ( saldo > 0 ) ? " e já está disponível para saque. %n" : ". %n";
 
         System.out.printf( msg, nomeCliente, agencia, numero, saldo );
     }
@@ -25,7 +25,7 @@ public class ContaTerminal {
         do {
             System.out.print( "Agência (apenas números e hífen caso possua dígito): " );
             agencia = input.nextLine();
-        } while( !agencia.matches( "[0-9-]*" ) );
+        } while( !agencia.matches( "[0-9-]*" ) || agencia.length() == 0 );
 
         return agencia;
     }
@@ -58,7 +58,7 @@ public class ContaTerminal {
         do {
             System.out.print( "Nome do titular(apenas letras são permitidas): " );
             nomeCliente = input.nextLine();
-        } while( !nomeCliente.matches( "[A-Za-z\\s]*" ) );
+        } while( !nomeCliente.matches( "[A-Za-z\\s]*" ) || nomeCliente.length() == 0 );
 
         return nomeCliente;
     }
