@@ -5,38 +5,40 @@ public class Contador {
     public static void main( String[] args ) {
         Scanner terminal = new Scanner( System.in );
 	
-	int parametroUm = capturarParametro( terminal, "Digite o primeiro parâmetro" );
-	int parametroDois = capturarParametro( terminal, "Digite o segundo parâmetro" );
+        int parametroUm = capturarParametro( terminal, "Digite o primeiro parâmetro" );
+        int parametroDois = capturarParametro( terminal, "Digite o segundo parâmetro" );
 
-	terminal.close();
+        terminal.close();
 
-	try {
-		//chamando o método contendo a lógica de contagem
-		contar( parametroUm, parametroDois );
-	} 
-	catch( ParametrosInvalidosException exception ) {
-		//imprimir a mensagem: O segundo parâmetro deve ser maior que o primeiro
-	        System.out.println( "O segundo parâmetro deve ser maior que o primeiro" );
-	}
-		
+        try {
+            //chamando o método contendo a lógica de contagem
+            contar( parametroUm, parametroDois );
+        } 
+        catch( ParametrosInvalidosException exception ) {
+            //imprimir a mensagem: O segundo parâmetro deve ser maior que o primeiro
+            System.out.println( "O segundo parâmetro deve ser maior que o primeiro" );
+        }
     }
 
     static void contar( int parametroUm, int parametroDois ) throws ParametrosInvalidosException {
         //validar se parametroUm é MAIOR que parametroDois e lançar a exceção
-	if( parametroUm > parametroDois ) 
+        if( parametroUm > parametroDois ) 
             throw new ParametrosInvalidosException();
 
-	int contagem = parametroDois - parametroUm;
-	//realizar o for para imprimir os números com base na variável contagem
+        int contagem = parametroDois - parametroUm;
+
+        //realizar o for para imprimir os números com base na variável contagem
         for( int i = 1; i <= contagem; i++ ) 
             System.out.print( "Imprimindo o número " + i + "... \n" );
     }
 
     static int capturarParametro( Scanner terminal, String mensagemPrompt ) {
+
         int parametro = 0;
         boolean excecaoDetectada = false;
+
         do {
-            try{
+            try {
                 System.out.println( mensagemPrompt );
                 parametro = Integer.parseInt( terminal.nextLine() );
                 excecaoDetectada = false;
@@ -55,12 +57,16 @@ public class Contador {
                 excecaoDetectada = true;
             }
         } while( excecaoDetectada );
+
         return parametro;
     }
 
     static void exibirStackTracePersonalizado( Exception e ) {
+
         StackTraceElement[] traceElements = e.getStackTrace();
+
         System.err.println( "Arquivo\t\t\t\tClasse\t\t\tMetodo\t\t\t\tLinha" );
+
         for( StackTraceElement el : traceElements ) 
             System.err.println( 
                 el.getFileName() + "\t\t\t" + el.getClassName() + "\t\t\t" + 
