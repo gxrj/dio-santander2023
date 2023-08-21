@@ -60,10 +60,10 @@ public class Contador {
 
     static void exibirStackTracePersonalizado( Exception e ) {
         StackTraceElement[] traceElements = e.getStackTrace();
-        System.err.println( "Arquivo\tClasse\tMetodo\tLinha" );
+        System.err.println( "Arquivo\t\t\t\tClasse\t\t\tMetodo\t\t\t\tLinha" );
         for( StackTraceElement el : traceElements ) 
             System.err.println( 
-                el.getFileName() + "\t" + el.getClassName() + "\t" + 
+                el.getFileName() + "\t\t\t" + el.getClassName() + "\t\t\t" + 
                 el.getMethodName() + "\t" + el.getLineNumber() );
     }
 }
