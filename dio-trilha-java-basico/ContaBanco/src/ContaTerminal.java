@@ -37,11 +37,12 @@ public class ContaTerminal {
 
         do{
             try{
-                System.out.print( "Número da conta (apenas números): " );
+                System.out.print( "Número da conta: " );
                 numero = Integer.parseInt( input.nextLine() );
                 excecaoDetectada = false;
             }
             catch( Exception e ) {
+                System.err.println( "Inválido, use apenas números" );
                 excecaoDetectada = true;
             }
         } while( excecaoDetectada );
@@ -71,11 +72,12 @@ public class ContaTerminal {
 
         do {
             try{
-                System.out.print( "Saldo (use vírgulas para valores decimais): " );
+                System.out.print( "Saldo: " );
                 saldo = Float.parseFloat( input.nextLine().replace( ",", "." ) ); 
                 excecaoDetectada = false;
             }
             catch( Exception e ) {
+                System.err.println( "Inválido, use vírgulas para valores decimais" );
                 excecaoDetectada = true;
             }
         } while( excecaoDetectada );
