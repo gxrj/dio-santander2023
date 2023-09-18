@@ -73,10 +73,10 @@ public class ListaTarefas {
         */
     }
 
-    public record Tarefa( String descricao ) implements Comparable<String> {
+    public record Tarefa( String descricao ) implements Comparable<Tarefa> {
 
-        public int compareTo( String descricao ) {
-            return descricao().compareTo( descricao );
+        public int compareTo( Tarefa tarefa ) {
+            return descricao().compareTo( tarefa.descricao() );
         }
     }
 }
