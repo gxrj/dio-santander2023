@@ -19,14 +19,10 @@ public class ListaTarefas {
             adicionarTarefa( "Lavar garagem" );
             adicionarTarefa( "Varrer calçada" );
             adicionarTarefa( "Capinar mato" );
-        } catch ( RuntimeException e ) {
-            err.printf( "Erro: %s %n", e.getMessage() );
-        }
 
-        out.printf( "Tarefas: %s %n", obterDescricoesTarefas() ); 
-        out.printf( "Quantidade: %d %n", obterNumeroTotalTarefas() ); 
+            out.printf( "Tarefas: %s %n", obterDescricoesTarefas() ); 
+            out.printf( "Quantidade: %d %n", obterNumeroTotalTarefas() ); 
         
-        try {
             // Remove Lavar banheiro
             out.println( 
                 removerTarefa( "Lavar banheiro" ) ? "Tarefa removida com sucesso!" : "Falha na remoçao!" );
@@ -74,7 +70,7 @@ public class ListaTarefas {
     }
 
     public record Tarefa( String descricao ) implements Comparable<Tarefa> {
-
+        @Override
         public int compareTo( Tarefa tarefa ) {
             return descricao().compareTo( tarefa.descricao() );
         }
