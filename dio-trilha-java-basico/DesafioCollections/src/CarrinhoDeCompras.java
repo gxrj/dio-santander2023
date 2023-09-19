@@ -79,7 +79,7 @@ public class CarrinhoDeCompras {
     private record Item( String nome, double preco, int quantidade ) implements Comparable<Item> {
         @Override
         public int compareTo( Item item ) {
-            return nome().compareTo( nome );
+            return nome().compareToIgnoreCase( nome );
         }
     }
 }

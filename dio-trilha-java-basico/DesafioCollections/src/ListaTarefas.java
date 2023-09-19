@@ -72,7 +72,7 @@ public class ListaTarefas {
     public record Tarefa( String descricao ) implements Comparable<Tarefa> {
         @Override
         public int compareTo( Tarefa tarefa ) {
-            return descricao().compareTo( tarefa.descricao() );
+            return descricao().compareToIgnoreCase( tarefa.descricao() );
         }
     }
 }
