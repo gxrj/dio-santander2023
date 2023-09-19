@@ -2,7 +2,7 @@ import static java.lang.System.err;
 import static java.lang.System.out;
 
 import java.util.ArrayList;
-import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 public class CatalogoLivros {
@@ -30,8 +30,15 @@ public class CatalogoLivros {
 		out.println( "\nCatalogo: " );
 		exibirTituloTabelado();
 		catalogo.livros.stream().forEach( out::println );
+
+		// Ordenacao
+		Comparator<Livro> ordenacaoPorAutor = ( livro1, livro2) -> livro1.autor().compareTo( livro2.autor() );
+		Comparator<Livro> ordenacaoPorAno = ( livro1, livro2) -> livro1.anoPublicacao() - livro2.anoPublicacao();
+		Comparator<Livro> ordenacaoPorTitulo = ( livro1, livro2) -> livro1.titulo().compareTo( livro2.titulo() );
 		// Prioridade de ordenacao: autor > ano > titulo
-		Collections.sort( catalogo.livros );
+		var ordenacao = ordenacaoPorAutor.thenComparing( ordenacaoPorAno ).thenComparing( ordenacaoPorTitulo );						 
+		catalogo.livros.sort( ordenacao ); 
+
 		out.println( "\nCatalogo ordenado por autor: " );
 		exibirTituloTabelado();
 		catalogo.livros.stream().forEach( out::println );
@@ -105,20 +112,10 @@ public class CatalogoLivros {
 			out.println( " Nenhum livro encontado!" );
 	}
 	// Prioridade de ordenacao: autor > ano > titulo
-	record Livro( String titulo, String autor, int anoPublicacao ) implements Comparable<Livro> {
-		@Override public int compareTo( Livro livro ) {
-			var diferencaAutor = autor().compareToIgnoreCase( livro.autor() );
-			if( diferencaAutor != 0 )
-				return diferencaAutor;
-			
-			var diferencaAnoPublicacao = anoPublicacao() - livro.anoPublicacao();
-			if( diferencaAnoPublicacao != 0 )
-				return diferencaAnoPublicacao;
-			
-			return titulo().compareToIgnoreCase( livro.titulo() ); 
-		}
+	record Livro( String titulo, String autor, int anoPublicacao ) {
 		
-		@Override public String toString() {
+		@Override 
+		public String toString() {
 			return String.format( "%-40s %-20s %d", titulo(), autor(), anoPublicacao() );
 		}
 	}
