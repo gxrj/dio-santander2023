@@ -8,5 +8,6 @@
 ### Pesquisa em List
 [Minha implementação](src/CatalogoLivros.java) do exercício proposto pelo [primeiro enunciado de pesquisa em listas](https://github.com/cami-la/collections-java-api-2023/tree/master/out/production/collections-java-api-2023/main/java/list#1-catálogo-de-livros)
 
+[Minha implementação](src/CarrinhoDeCompras.java) do desafio proposto pelo [segundo enunciado de pesquisa em listas](https://github.com/cami-la/collections-java-api-2023/tree/master/out/production/collections-java-api-2023/main/java/list#2-soma-de-números)
 
 ### Ordenação em List
