@@ -13,3 +13,5 @@
 ### Ordenação em List
 
 [Minha implementação](src/OrdenacaoPessoas.java) do exercício proposto pelo [primeiro enunciado de ordenação em listas](https://github.com/cami-la/collections-java-api-2023/tree/master/out/production/collections-java-api-2023/main/java/list#1-ordenação-de-pessoas)
+
+[Minha implementação](src/OrdenacaoNumeros.java) do exercício proposto pelo [segundo enunciado de ordenação em listas](https://github.com/cami-la/collections-java-api-2023/tree/master/out/production/collections-java-api-2023/main/java/list#2-ordenação-de-números)

@@ -111,7 +111,7 @@ public class CatalogoLivros {
 		else 
 			out.println( " Nenhum livro encontado!" );
 	}
-	// Prioridade de ordenacao: autor > ano > titulo
+
 	record Livro( String titulo, String autor, int anoPublicacao ) {
 		
 		@Override 
