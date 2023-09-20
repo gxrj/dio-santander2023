@@ -16,10 +16,12 @@ Obs: Por conveniência *classes usadas apenas para manter o estado da aplicaçã
 
 [Minha implementação](src/OrdenacaoPessoas.java) do exercício proposto pelo [primeiro enunciado de ordenação em listas](https://github.com/cami-la/collections-java-api-2023/tree/master/out/production/collections-java-api-2023/main/java/list#1-ordenação-de-pessoas)
 
-[Minha implementação](src/OrdenacaoNumeros.java) do exercício proposto pelo [segundo enunciado de ordenação em listas](https://github.com/cami-la/collections-java-api-2023/tree/master/out/production/collections-java-api-2023/main/java/list#2-ordenação-de-números)
+[Minha implementação](src/OrdenacaoNumeros.java) do desafio proposto pelo [segundo enunciado de ordenação em listas](https://github.com/cami-la/collections-java-api-2023/tree/master/out/production/collections-java-api-2023/main/java/list#2-ordenação-de-números)
 
 ### Operações Básicas com Set
 [Minha implementação](src/ConjuntoConvidados.java) do exercício proposto pelo [primeiro enunciado de operacoes basicas em conjuntos](https://github.com/cami-la/collections-java-api-2023/tree/master/out/production/collections-java-api-2023/main/java/set#1-conjunto-de-convidados)
+
+[Minha implementação](src/ConjuntoPalavrasUnicas.java) do desafio proposto pelo [segundo enunciado de operacoes basicas em conjuntos](https://github.com/cami-la/collections-java-api-2023/tree/master/out/production/collections-java-api-2023/main/java/list#2-conjunto-de-palavras-únicas)
 
 ### Pesquisa em Set
 
