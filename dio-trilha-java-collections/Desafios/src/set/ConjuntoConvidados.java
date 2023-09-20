@@ -1,3 +1,5 @@
+package set;
+
 import static java.lang.System.err;
 import static java.lang.System.out;
 
@@ -66,7 +68,7 @@ class ConjuntoConvidados {
 		out.println( 
 			iterator.hasNext() ? 
 				String.format( "%n%-20s %-7s", "Nome convidado", "Convite" ) 
-				: "Nao ha convidado!" 
+				: "Nao ha convidados!" 
 		);
 		while( iterator.hasNext() ) {
 			var convidado = iterator.next();
