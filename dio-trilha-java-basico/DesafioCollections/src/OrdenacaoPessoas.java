@@ -48,7 +48,7 @@ public class OrdenacaoPessoas {
 		Collections.sort( pessoas );
 	}
 	void ordenarPorAltura() {
-		Comparator<Pessoa> comparacaoPorAltura = ( p1, p2 ) -> (int) ( p1.altura() * 100 - p2.altura() * 100 );
+		Comparator<Pessoa> comparacaoPorAltura = ( p1, p2 ) -> Double.compare( p1.altura(), p2.altura() );
 		pessoas.sort( comparacaoPorAltura );
 	}
 

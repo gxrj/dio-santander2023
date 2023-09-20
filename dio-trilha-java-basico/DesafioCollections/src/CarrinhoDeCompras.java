@@ -7,8 +7,9 @@ import java.util.NoSuchElementException;
 
 public class CarrinhoDeCompras {
 
+    private record Item( String nome, double preco, int quantidade ) {}
     private List<Item> carrinho;
-
+    
     CarrinhoDeCompras() {
         carrinho = new ArrayList<>();
     }
@@ -74,12 +75,5 @@ public class CarrinhoDeCompras {
                         String.format( "item: %-20s valor: %.2f reais \t quantidade: %d", item.nome(), item.preco(), item.quantidade() )
                 )
                 .forEach( out::println );
-    }
-
-    private record Item( String nome, double preco, int quantidade ) implements Comparable<Item> {
-        @Override
-        public int compareTo( Item item ) {
-            return nome().compareToIgnoreCase( nome );
-        }
     }
 }

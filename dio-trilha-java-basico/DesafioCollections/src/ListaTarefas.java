@@ -6,6 +6,7 @@ import java.util.ArrayList;
 
 public class ListaTarefas {
 
+    public record Tarefa( String descricao ) {}
     private static List<Tarefa> tarefas = new ArrayList<>();
 
     public static void main( String[] args ) {
@@ -67,12 +68,5 @@ public class ListaTarefas {
         
         return descricoes;
         */
-    }
-
-    public record Tarefa( String descricao ) implements Comparable<Tarefa> {
-        @Override
-        public int compareTo( Tarefa tarefa ) {
-            return descricao().compareToIgnoreCase( tarefa.descricao() );
-        }
     }
 }

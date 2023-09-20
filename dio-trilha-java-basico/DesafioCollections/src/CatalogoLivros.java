@@ -32,9 +32,9 @@ public class CatalogoLivros {
 		catalogo.livros.stream().forEach( out::println );
 
 		// Ordenacao
-		Comparator<Livro> ordenacaoPorAutor = ( livro1, livro2) -> livro1.autor().compareTo( livro2.autor() );
-		Comparator<Livro> ordenacaoPorAno = ( livro1, livro2) -> livro1.anoPublicacao() - livro2.anoPublicacao();
-		Comparator<Livro> ordenacaoPorTitulo = ( livro1, livro2) -> livro1.titulo().compareTo( livro2.titulo() );
+		Comparator<Livro> ordenacaoPorAutor = ( livro1, livro2 ) -> livro1.autor().compareTo( livro2.autor() );
+		Comparator<Livro> ordenacaoPorAno = ( livro1, livro2 ) -> livro1.anoPublicacao() - livro2.anoPublicacao();
+		Comparator<Livro> ordenacaoPorTitulo = ( livro1, livro2 ) -> livro1.titulo().compareTo( livro2.titulo() );
 		// Prioridade de ordenacao: autor > ano > titulo
 		var ordenacao = ordenacaoPorAutor.thenComparing( ordenacaoPorAno ).thenComparing( ordenacaoPorTitulo );						 
 		catalogo.livros.sort( ordenacao ); 
