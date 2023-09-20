@@ -1,4 +1,4 @@
-## Exercícios e desafios com Java List
+## Exercícios e desafios com `java.util.List`
 
 Obs: Por conveniência algumas *classes usadas apenas para manter o estado da aplicação(POJO)* foram substituídas por _records_
 

@@ -11,7 +11,7 @@ public class ListaTarefas {
 	Set<Tarefa> tarefas;
 	
 	ListaTarefas() {
-		tarefas = new TreeSet<Tarefa>();
+		tarefas = new TreeSet<>();
 	}
 	
 	public static void main( String... args ) {

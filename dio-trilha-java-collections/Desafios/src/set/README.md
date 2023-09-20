@@ -1,4 +1,4 @@
-## Exercícios e desafios com Java Set
+## Exercícios e desafios com `java.util.Set`
 
 Obs: Por conveniência algumas *classes usadas apenas para manter o estado da aplicação(POJO)* foram substituídas por _records_
 
@@ -13,3 +13,4 @@ Obs: Por conveniência algumas *classes usadas apenas para manter o estado da ap
 [Minha implementação](ListaTarefas.java) do desafio proposto pelo [segundo enunciado de pesquisa em conjuntos](https://github.com/cami-la/collections-java-api-2023/tree/master/out/production/collections-java-api-2023/main/java/set#2-lista-de-tarefas)
 
 ### Ordenação em Set
+[Minha implementação](CadastroProdutos.java) do exercício proposto pelo [primeiro enunciado de ordenacao em conjuntos](https://github.com/cami-la/collections-java-api-2023/tree/master/out/production/collections-java-api-2023/main/java/set#1-cadastro-de-produtos)
