@@ -26,4 +26,6 @@ Obs: Por conveniência algumas *classes usadas apenas para manter o estado da ap
 ### Pesquisa em Set
 [Minha implementação](src/set/AgendaContatos.java) do exercício proposto pelo [primeiro enunciado de pesquisa em conjuntos](https://github.com/cami-la/collections-java-api-2023/tree/master/out/production/collections-java-api-2023/main/java/set#1-agenda-de-contatos)
 
+[Minha implementação](src/set/ListaTarefas.java) do desafio proposto pelo [segundo enunciado de pesquisa em conjuntos](https://github.com/cami-la/collections-java-api-2023/tree/master/out/production/collections-java-api-2023/main/java/set#2-lista-de-tarefas)
+
 ### Ordenação em Set

@@ -45,7 +45,7 @@ class AgendaContatos {
 	void exibirContatos() {
 		out.println( String.format( "%n%-20s - %s", "Contato", "Telefone" ) );
 		contatos.stream()
-				.map( el -> String.format( "%-20s - %d", el.getNome(), el.getNumero() ) )
+				.map( el -> String.format( "%-20s - %d", el.nome, el.numero ) )
 				.forEach( out::println );
 	}
 
@@ -54,8 +54,8 @@ class AgendaContatos {
 		out.printf( "Pesquisando por: %s... ", nome );
 		while( iterator.hasNext() ) {
 			var contato = iterator.next();
-			if( contato.getNome().equalsIgnoreCase( nome ) ) {
-				out.printf( "Encontrado(a) %s, numero: %d%n", contato.getNome(), contato.getNumero() );
+			if( contato.nome.equalsIgnoreCase( nome ) ) {
+				out.printf( "Encontrado(a) %s, numero: %d%n", contato.nome, contato.numero );
 				return contato;
 			}
 		}
@@ -67,16 +67,31 @@ class AgendaContatos {
 	void atualizarNumeroContato( String nome, int novoNumero ) { 
 		var contato = pesquisarPorNome( nome );
 
-		if( contato != null && contato.getNome().equalsIgnoreCase( nome ) ) {
+		if( contato != null && contato.nome.equalsIgnoreCase( nome ) ) {
 			out.print( 
 				String.format( 
 					"%nAtualizando o numero do contato( %s ) de %d para %d... ", 
-					contato.getNome(), contato.getNumero(), novoNumero 
+					contato.nome, contato.numero, novoNumero 
 				) 
 			);
-			contato.setNumero( novoNumero );
+			contato.numero = novoNumero;
 			out.println( "Contato atualizado!" );
 	    }	
+	}
+
+	class Contato implements Comparable<Contato> {
+		String nome;
+		int numero;
+	
+		Contato( String nome, int numero ) {
+			this.nome = nome;
+			this.numero = numero;
+		}
+
+		@Override 
+		public int compareTo( Contato contato ) {
+			return nome.compareTo( contato.nome );
+		}
 	}
 	
 }
