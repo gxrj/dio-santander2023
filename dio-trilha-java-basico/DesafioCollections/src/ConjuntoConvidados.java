@@ -47,25 +47,18 @@ class ConjuntoConvidados {
 	}
 	
 	void removerConvidadoPorCodigoConvite( int codigoConvite ) throws RuntimeException {
-		var iterator = convidados.iterator();
 		out.printf( "Buscando convidado com codigo de convite: %d... ", codigoConvite );
-		while( iterator.hasNext() ) {
-			var convidado = iterator.next();
+		for( var convidado : convidados ) 
 			if( convidado.codigoConvite() == codigoConvite ) {
 				convidados.remove( convidado );
 				out.printf( " ==>  %s foi removido(a) dos convidados!%n", convidado.nome() );
 				return;
-			}	
-		}
+			}
 		out.println( "Convidado nao encontrado!" );
 	}
 	
 	int contarConvidados() {
-		var total = 0;
-		var iterator = convidados.iterator();
-		for( ; iterator.hasNext(); total++ ) 
-			iterator.next();
-		return total;
+		return convidados.size();
 	}
 	
 	void exibirConvidados() {
