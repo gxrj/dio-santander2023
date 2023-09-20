@@ -118,7 +118,7 @@ public class CatalogoLivros {
 		
 		@Override 
 		public String toString() {
-			return String.format( "%-40s %-20s %d", titulo(), autor(), anoPublicacao() );
+			return String.format( "%-40s %-20s %d", titulo, autor, anoPublicacao );
 		}
 	}
 }

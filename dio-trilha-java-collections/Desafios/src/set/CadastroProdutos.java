@@ -26,11 +26,7 @@ class CadastroProdutos {
 			catalogo.exibirProdutos( catalogo.produtos );
 			catalogo.exibirProdutosPorNome();
 			catalogo.exibirProdutosPorPreco();
-		} 
-		catch( NullPointerException e ) {
-			err.println( "Falha na exibicao de produtos! \nDetalhes: " + e.getMessage() );
-		}
-		catch( RuntimeException e ) {
+		} catch( RuntimeException e ) {
 			err.println( "Falha na adicao de produto! \nDetalhes: " + e.getMessage() );
 		}
 	}
@@ -39,17 +35,17 @@ class CadastroProdutos {
 		produtos.add( new Produto( cod, nome, preco, quantidade ) );
 	}
 	
-	void exibirProdutosPorNome() throws NullPointerException {
+	void exibirProdutosPorNome() {
 		Comparator<Produto> ordenacaoPorNome = ( p1, p2 ) -> p1.nome().compareTo( p2.nome() );
-		out.println( "\nOrdenando produtos por nome..." );
+		out.println( "Ordenando produtos por nome..." );
 		var acervo = new TreeSet<Produto> ( ordenacaoPorNome );
 		acervo.addAll( produtos );
 		exibirProdutos( acervo );
 	}
 	
-	void exibirProdutosPorPreco() throws NullPointerException {
+	void exibirProdutosPorPreco() {
 		Comparator<Produto> ordenacaoPorPreco = ( p1, p2 ) -> Double.compare( p1.preco(), p2.preco() );
-		out.println( "\nOrdenando produtos por preco..." );
+		out.println( "Ordenando produtos por preco..." );
 		var acervo = new TreeSet<Produto>( ordenacaoPorPreco );
 		acervo.addAll( produtos );
 		exibirProdutos( acervo );
@@ -57,8 +53,9 @@ class CadastroProdutos {
 
 	private void exibirProdutos( Set<Produto> acervoProdutos ) {
 		if( acervoProdutos.size() != 0 ) {
-			out.printf( String.format( "%-6s %-20s %-6s %-5s %n", "Cod", "Nome", "Preco", "Qtd" ) );
+			out.printf( String.format( "%n%-6s %-20s %-6s %-5s %n", "Cod", "Nome", "Preco", "Qtd" ) );
 			acervoProdutos.forEach( out::print );
+			out.println();
 		}
 		else
 			out.println( "Nao ha produtos cadastrados!" );
@@ -69,7 +66,7 @@ class CadastroProdutos {
 			return Long.compare( cod, p.cod() );
 		}
 		@Override public String toString() {
-			return String.format( "%-6s %-20s %-6.2f %d %n", cod(), nome(), preco(), quantidade() );
+			return String.format( "%-6s %-20s %-6.2f %d %n", cod, nome, preco, quantidade );
 		}
 	}
 }

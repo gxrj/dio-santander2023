@@ -78,7 +78,7 @@ class ConjuntoConvidados {
 	
 	public record Convidado( String nome, int codigoConvite ) implements Comparable<Convidado> {
 		@Override public int compareTo( Convidado convidado ) {
-			var comparacaoPorNome = nome().compareTo( convidado.nome() );
+			var comparacaoPorNome = nome.compareTo( convidado.nome() );
 
 			if( comparacaoPorNome != 0 ) 
 				return comparacaoPorNome;

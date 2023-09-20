@@ -56,10 +56,10 @@ public class OrdenacaoPessoas {
 
 	record Pessoa( String nome, int idade, double altura ) implements Comparable<Pessoa> {
 		@Override public int compareTo( Pessoa pessoa ) {
-			return idade() - pessoa.idade();
+			return idade - pessoa.idade();
 		}
 		@Override public String toString() {
-			return String.format( "%-15s %-3d anos\t %-2.2f metros", nome(), idade(), altura() );
+			return String.format( "%-15s %-3d anos\t %-2.2f metros", nome, idade, altura );
 		}
 	}
 }
