@@ -3,7 +3,7 @@ package map;
 import static java.lang.System.err;
 import static java.lang.System.out;
 
-import java.util.TreeMap;
+import java.util.HashMap;
 import java.util.Map;
 
 class EstoqueProdutos {
@@ -11,7 +11,7 @@ class EstoqueProdutos {
 	Map<Long, Produto> produtos;
 	
 	EstoqueProdutos() {
-		produtos = new TreeMap<>();
+		produtos = new HashMap<>();
 	}
 
 	public static void main( String... args ) {

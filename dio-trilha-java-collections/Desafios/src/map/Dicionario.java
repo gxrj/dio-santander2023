@@ -3,15 +3,15 @@ package map;
 import static java.lang.System.err;
 import static java.lang.System.out;
 
-import java.util.TreeMap;
+import java.util.HashMap;
 import java.util.Map;
 
 class Dicionario {
 	
-	Map<String, String> palavras;
+	Map<String, String> map;
 	
 	Dicionario() {
-		palavras = new TreeMap<>();
+		map = new HashMap<>();
 	}
 
 	public static void main( String... args ) {
@@ -33,21 +33,21 @@ class Dicionario {
 	}
 	
 	void adicionarPalavra( String palavra, String definicao ) throws RuntimeException {
-		palavras.put( palavra, definicao );
+		map.put( palavra, definicao );
 	}
 	
 	void removerPalavra( String palavra ) throws RuntimeException {
 		out.printf( "Removendo %s... ", palavra );
-		out.println( palavras.remove( palavra ) != null ? "Palavra removida!" : "Palavra nao encontrada!");
+		out.println( map.remove( palavra ) != null ? "Palavra removida!" : "Palavra nao encontrada!");
 	}
 	
 	void exibirPalavras() {
-		if( palavras.size() == 0 ) {
+		if( map.size() == 0 ) {
 			out.println( "Dicionario vazio!" );
 			return;
 		}
 		out.printf( "%n%-20s %s %n", "Palavra", "Definicao" );
-		palavras.entrySet()
+		map.entrySet()
 				.stream()
 				.map( el -> String.format( "%-20s %s", el.getKey(), el.getValue() ) )
 				.forEach( out::println );
@@ -57,7 +57,7 @@ class Dicionario {
 	
 	String pesquisarPorPalavra( String palavra ) {
 		out.printf( "Pesquisando pela palavra \"" + palavra + "\"... " );
-		var definicao = palavras.get( palavra );
+		var definicao = map.get( palavra );
 		
 		if( definicao == null ) {
 			out.println( "Palavra nao encontrada!" );

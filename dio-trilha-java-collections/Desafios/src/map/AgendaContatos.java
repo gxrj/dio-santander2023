@@ -8,10 +8,10 @@ import java.util.Map;
 
 class AgendaContatos {
 	
-	Map<String, Integer> contatos;
+	Map<String, Integer> map;
 	
 	AgendaContatos() {
-		contatos = new HashMap<>();
+		map = new HashMap<>();
 	}
 	
 	public static void main( String... args ) {
@@ -35,22 +35,22 @@ class AgendaContatos {
 	}
 	
 	void adicionarContato( String nome, Integer telefone ) throws RuntimeException {
-		contatos.put( nome, telefone );
+		map.put( nome, telefone );
 	}
 
 	void removerContato( String nome ) throws RuntimeException {
 		out.printf( "Removendo %s... ", nome );
-		out.println( contatos.remove( nome ) != null ? "Contato removido!" : "Contato inexistente!" );
+		out.println( map.remove( nome ) != null ? "Contato removido!" : "Contato inexistente!" );
 	}
 	
 	void exibirContatos() {
-		if( contatos.size() == 0 ) {
-			out.println( "Nao ha contatos!" );
+		if( map.size() == 0 ) {
+			out.println( "Nao ha map!" );
 			return;
 		}
 		out.printf( "%n%-20s %s %n", "Nome", "Telefone" );
 
-		for( var contato : contatos.entrySet() )
+		for( var contato : map.entrySet() )
 			out.printf( "%-20s %d %n", contato.getKey(), contato.getValue() );
 
 		out.println();
@@ -58,7 +58,7 @@ class AgendaContatos {
 	
 	Integer pesquisarPorNome( String nome ) {
 		out.printf( "Pesquisando o telefone de " + nome + "... " );
-		var telefone = contatos.get( nome );
+		var telefone = map.get( nome );
 
 		if( telefone == null ) {
 			out.println( "Contato nao encontrado!" );
