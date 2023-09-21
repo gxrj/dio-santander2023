@@ -2,6 +2,8 @@
 
 Obs: Por conveniência algumas *classes usadas apenas para manter o estado da aplicação(POJO)* foram substituídas por _records_
 
+[<== Voltar](../../README.md)
+
 ### Operações básicas com List
 [Minha implementação](ListaTarefas.java) do exercício proposto pelo [primeiro enunciado de operações básicas com listas](https://github.com/cami-la/collections-java-api-2023/tree/master/out/production/collections-java-api-2023/main/java/list#1-lista-de-tarefas)
 
