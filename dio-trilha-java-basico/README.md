@@ -2,5 +2,5 @@
 
 [<== Voltar](../README.md)
 
-- [Detalhes](ContaBanco/README.md) do primeiro desafio e [minha implementação](ContaBanco/src/ContaTerminal.java)
-- [Detalhes](DesafioControleFluxo/README.md) do segundo desafio e [minha implementação](DesafioControleFluxo/src/Contador.java)
+- Links para o [primeiro desafio](ContaBanco/README.md) e a [minha implementação](ContaBanco/src/ContaTerminal.java)
+- Links para o [segundo desafio](DesafioControleFluxo/README.md) e a [minha implementação](DesafioControleFluxo/src/Contador.java)
