@@ -19,20 +19,37 @@ class AgendaEventos {
 
 	public static void main( String... args ) {
 		var agenda = new AgendaEventos();
+
+		try {
+			agenda.exibirAgenda();
+			agenda.adicionarEvento( LocalDate.parse("2023-09-19"), "Lancamento do java 21", "Lorem ipsum" );
+			agenda.adicionarEvento( LocalDate.parse("2023-10-12"), "Dia das criancas", "Foo" );
+			agenda.adicionarEvento( LocalDate.parse("2023-10-15"), "Dia do professor", "Bar" );
+			agenda.adicionarEvento( LocalDate.parse("2023-10-22"), "Fim do bootcamp", "Baz" );
+			agenda.adicionarEvento( LocalDate.now().plusDays( 5L ), "Springbreak em 5 dias", "O tempo passar" );
+			out.println();
+			agenda.exibirAgenda();
+			var evento = agenda.obterProximoEvento();
+			out.println( evento != null ? "\nProximo evento sera: " + evento.nome() : "Nao ha proximos eventos!"  );
+		} catch( RuntimeException e ) {
+			err.println( "Falha na adicao de eventos!\nDetalhes: " + e.getMessage() );
+		}
 	}
 
-	void adicionarEvento( LocalDate data, String nome, String atracao ) {
+	void adicionarEvento( LocalDate data, String nome, String atracao ) throws RuntimeException {
+		out.printf( "%nAdicionando evento \"%s\"... ", nome );
 		map.put( data, new Evento( nome, atracao ) );
 	}
 
 	void exibirAgenda() {
+		out.println( "\nListando eventos... " );
 		var mapOrdenado = obterMapOrdenadoPorData();
 
 		if( mapOrdenado == null ) return;
-	
+		out.printf( "%-12s %-25s %s %n", "Data", "Evento", "Atracao" );
 		for( var entry : mapOrdenado.entrySet() ) {
 			var evento = entry.getValue();
-			out.printf( "%-6s %-15s %s", entry.getKey(), evento.nome(), evento.atracao() );
+			out.printf( "%-12s %-25s %s %n", entry.getKey(), evento.nome(), evento.atracao() );
 		}
 	}
 
@@ -42,8 +59,7 @@ class AgendaEventos {
 		for( var entry : mapOrdenado.entrySet() )
 			if( LocalDate.now().isBefore( entry.getKey() ) )
 				return entry.getValue();
-		
-		out.println( "Nao ha proximos eventos!" );
+
 		return null;
 	}
 
