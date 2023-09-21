@@ -34,7 +34,7 @@ class AgendaContatos {
 		}
 	}
 	
-	void adicionarContato( String nome, Integer telefone) throws RuntimeException {
+	void adicionarContato( String nome, Integer telefone ) throws RuntimeException {
 		contatos.put( nome, telefone );
 	}
 
