@@ -17,3 +17,6 @@ Obs: Por conveniência algumas *classes usadas apenas para manter o estado da ap
 [Minha implementação](OrdenacaoPessoas.java) do exercício proposto pelo [primeiro enunciado de ordenação em listas](https://github.com/cami-la/collections-java-api-2023/tree/master/out/production/collections-java-api-2023/main/java/list#1-ordenação-de-pessoas)
 
 [Minha implementação](OrdenacaoNumeros.java) do desafio proposto pelo [segundo enunciado de ordenação em listas](https://github.com/cami-la/collections-java-api-2023/tree/master/out/production/collections-java-api-2023/main/java/list#2-ordenação-de-números)
+
+
+[<== Voltar](../../README.md)
