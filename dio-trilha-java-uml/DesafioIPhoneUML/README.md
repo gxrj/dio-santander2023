@@ -5,7 +5,8 @@
 - [Link do enunciado](https://github.com/digitalinnovationone/trilha-java-basico/tree/main/desafios/poo#poo---desafio) do desafio.
 
 - Imagem da solução do desafio.
-![Diagrama de classe do IPhone](assets/Iphone-DiagramaDeClasse.PNG)
+
+<img src="assets/Iphone-DiagramaDeClasse.PNG"/>
 
 Observação: O diagrama de classes foi criado através do `StarUML`
 
