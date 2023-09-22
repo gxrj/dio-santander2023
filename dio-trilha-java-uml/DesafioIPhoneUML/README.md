@@ -4,7 +4,7 @@
 
 - [Link do enunciado](https://github.com/digitalinnovationone/trilha-java-basico/tree/main/desafios/poo#poo---desafio) do desafio.
 
-- Imagem da solução do desafio.
+- Imagem da solução do desafio. <br>
 
 <img src="assets/Iphone-DiagramaDeClasse.PNG"/>
 
