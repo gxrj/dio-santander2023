@@ -63,7 +63,7 @@ class EstoqueProdutos {
 	}
 	
 	double calcularValorTotalEstoque() {
-		var total = 0;
+		var total = 0d;
 		
 		for( var produto : produtos.entrySet() ) {
 			var item = produto.getValue();
