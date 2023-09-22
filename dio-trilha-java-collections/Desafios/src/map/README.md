@@ -2,7 +2,7 @@
 
 Obs: Por conveniência algumas *classes usadas apenas para manter o estado da aplicação(POJO)* foram substituídas por _records_
 
-[<== Voltar](../../README.md)
+[&larr; Voltar](../../README.md)
 
 ### Operações Básicas com Map
 [Minha implementação](AgendaContatos.java) o exercício proposto pelo [primeiro enunciado de operações básicas com Maps](https://github.com/cami-la/collections-java-api-2023/tree/master/out/production/collections-java-api-2023/main/java/map#1-agenda-de-contatos)
@@ -21,4 +21,4 @@ Obs: Por conveniência algumas *classes usadas apenas para manter o estado da ap
 
 [Minha implementação](LivrariaOnline.java) o desafio proposto pelo [segundo enunciado de ordenação com Maps](https://github.com/cami-la/collections-java-api-2023/tree/master/out/production/collections-java-api-2023/main/java/map#2-livraria-online)
 
-[<== Voltar](../../README.md)
+[&larr; Voltar](../../README.md)

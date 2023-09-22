@@ -2,7 +2,7 @@
 
 Obs: Por conveniência algumas *classes usadas apenas para manter o estado da aplicação(POJO)* foram substituídas por _records_
 
-[<== Voltar](../../README.md)
+[&larr; Voltar](../../README.md)
 
 ### Operações básicas com List
 [Minha implementação](ListaTarefas.java) do exercício proposto pelo [primeiro enunciado de operações básicas com listas](https://github.com/cami-la/collections-java-api-2023/tree/master/out/production/collections-java-api-2023/main/java/list#1-lista-de-tarefas)
@@ -21,4 +21,4 @@ Obs: Por conveniência algumas *classes usadas apenas para manter o estado da ap
 [Minha implementação](OrdenacaoNumeros.java) do desafio proposto pelo [segundo enunciado de ordenação em listas](https://github.com/cami-la/collections-java-api-2023/tree/master/out/production/collections-java-api-2023/main/java/list#2-ordenação-de-números)
 
 
-[<== Voltar](../../README.md)
+[&larr; Voltar](../../README.md)

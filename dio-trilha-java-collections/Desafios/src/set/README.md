@@ -2,7 +2,7 @@
 
 Obs: Por conveniência algumas *classes usadas apenas para manter o estado da aplicação(POJO)* foram substituídas por _records_
 
-[<== Voltar](../../README.md)
+[&larr; Voltar](../../README.md)
 
 ### Operações Básicas com Set
 [Minha implementação](ConjuntoConvidados.java) do exercício proposto pelo [primeiro enunciado de operacoes básicas em conjuntos](https://github.com/cami-la/collections-java-api-2023/tree/master/out/production/collections-java-api-2023/main/java/set#1-conjunto-de-convidados)
@@ -19,4 +19,4 @@ Obs: Por conveniência algumas *classes usadas apenas para manter o estado da ap
 
 [Minha implementação](GerenciadorAlunos.java) do desafio proposto pelo [segundo enunciado de ordenacao em conjuntos](https://github.com/cami-la/collections-java-api-2023/tree/master/out/production/collections-java-api-2023/main/java/set#2-lista-de-alunos)
 
-[<== Voltar](../../README.md)
+[&larr; Voltar](../../README.md)
