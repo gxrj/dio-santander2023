@@ -6,7 +6,7 @@ Trata-se de uma aplicação multi-tenant em que o database e o schema são compa
 
 ### Observações
 
-- O sistema de pagamentos foi desconsiderado devido sua complexidade que pode ser implementados em futuras versões, seja integrando uma API de pagamentos terceirizada ou desenvolvendo um subsistema de pagamaentos próprio.
+- O sistema de pagamentos foi desconsiderado devido sua complexidade que pode ser implementados em futuras versões, seja integrando uma API de pagamentos terceirizada ou desenvolvendo um subsistema de pagamentos próprio.
 
 Segue abaixo o diagrama de classes de um MVP.
 
@@ -87,4 +87,7 @@ classDiagram
         <<abstract>>
         -String nome
     }
+
+    Pedido "1..*" ..> "1" Cliente
+    Pedido "1..*" ..> "1" Restaurante
 ```
