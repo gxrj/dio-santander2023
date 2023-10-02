@@ -23,7 +23,7 @@ classDiagram
         -bool emEstoque
         -Restaurante restaurante
     }
-    class StatusPedido {
+    class StatusPedido{
         <<enumeration>>
         CONCLUIDO
         PENDENTE
@@ -69,20 +69,22 @@ classDiagram
         SEXTA
         SABADO
     }
-    class Endereco {
+    class Endereco{
         -String cep
         -String logradouro
         -String numero
         -String referencia
     }
-    class Bairro {
+    class Bairro{
         -Cidade cidade
     }
-    class Cidade {
+    class Cidade{
         -Estado estado
     }
-    class Estado{}
-    class Localidade {
+    class Estado{
+
+    }
+    class Localidade{
         <<abstract>>
         -String nome
     }
