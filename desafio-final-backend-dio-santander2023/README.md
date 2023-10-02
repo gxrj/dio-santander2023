@@ -34,7 +34,6 @@ classDiagram
         PENDENTE
     }
     class Cliente{
-        -String nome
         -String cpf
         -Endereco endereco
     }
@@ -66,10 +65,10 @@ classDiagram
         <<abstract>>
         -String login
         -String senha
+        -String nomeUsuario
     }
     class Restaurante{
         -String cnpj
-        -String nome
         -String descricao
         -List~Funcionamento~ horarioFuncionamento
         -Endereco endereco
