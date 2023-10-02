@@ -45,6 +45,25 @@ classDiagram
         -String numero
         -Cliente cliente
     }
+        class Endereco{
+        -String cep
+        -String logradouro
+        -String numero
+        -String referencia
+        -Bairro bairro
+    }
+    class Bairro{
+        -Cidade cidade
+    }
+    class Cidade{
+        -Estado estado
+    }
+    class Estado{
+    }
+    class Localidade{
+        <<abstract>>
+        -String nome
+    }
     class Restaurante{
         -String cnpj
         -String nome
@@ -67,25 +86,6 @@ classDiagram
         QUINTA
         SEXTA
         SABADO
-    }
-    class Endereco{
-        -String cep
-        -String logradouro
-        -String numero
-        -String referencia
-        -Bairro bairro
-    }
-    class Bairro{
-        -Cidade cidade
-    }
-    class Cidade{
-        -Estado estado
-    }
-    class Estado{
-    }
-    class Localidade{
-        <<abstract>>
-        -String nome
     }
 
     Pedido "1..*" ..> "1" Cliente
