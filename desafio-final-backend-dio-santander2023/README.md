@@ -93,6 +93,16 @@ classDiagram
     Pedido ..> StatusPedido
     Pedido --o Item
     Restaurante --* Item
+    Restaurante ..> Funcionamento
+    Restaurante --* Endereco
+    Endereco ..> Bairro
+    Bairro ..> Cidade
+    Cidade ..> Estado
+    Localidade <|-- Bairro
+    Localidade <|-- Cidade
+    Localidade <|-- Estado
+    Funcionamento ..> DiaSemana
+
 
 
 ```
