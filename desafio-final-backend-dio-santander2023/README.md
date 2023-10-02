@@ -4,6 +4,10 @@ Solução: Desenvolver um protótipo de aplicação que simule o iFood
 
 Trata-se de uma aplicação multi-tenant em que o database e o schema são compartilhados
 
+### Observações
+
+- O sistema de pagamentos foi desconsiderado devido sua complexidade que pode ser implementados em futuras versões, seja integrando uma API de pagamentos terceirizada ou desenvolvendo um subsistema de pagamaentos próprio.
+
 Segue abaixo o diagrama de classes de um MVP.
 
 ### Diagrama de classes
@@ -14,6 +18,7 @@ classDiagram
         -StatusPedido status
         -DateTime data
         -double total
+        -bool pagamentoConfirmado
         -Cliente cliente
         -Restaurante restaurante
     }
@@ -39,12 +44,6 @@ classDiagram
         -int ddd
         -String numero
         -Cliente cliente
-    }
-    class CartaoCredito{
-        -String numero
-        -Date validade
-        -int codVefiricacao
-        -Cliente titular
     }
     class Restaurante{
         -String cnpj
