@@ -82,7 +82,8 @@ classDiagram
     class Cidade{
         -Estado estado
     }
-    class Estado{}
+    class Estado{
+    }
     class Localidade{
         <<abstract>>
         -String nome
