@@ -90,4 +90,9 @@ classDiagram
 
     Pedido "1..*" ..> "1" Cliente
     Pedido "1..*" ..> "1" Restaurante
+    Pedido ..> StatusPedido
+    Pedido --º Item
+    Restaurante --* Item
+
+
 ```
