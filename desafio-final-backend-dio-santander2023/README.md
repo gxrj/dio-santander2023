@@ -45,7 +45,7 @@ classDiagram
         -String numero
         -Cliente cliente
     }
-        class Endereco{
+    class Endereco{
         -String cep
         -String logradouro
         -String numero
