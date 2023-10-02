@@ -74,6 +74,7 @@ classDiagram
         -String logradouro
         -String numero
         -String referencia
+        -Bairro bairro
     }
     class Bairro{
         -Cidade cidade
@@ -81,9 +82,7 @@ classDiagram
     class Cidade{
         -Estado estado
     }
-    class Estado{
-
-    }
+    class Estado{}
     class Localidade{
         <<abstract>>
         -String nome
