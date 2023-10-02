@@ -36,8 +36,6 @@ classDiagram
     class Cliente{
         -String nome
         -String cpf
-        -String email
-        -String senha
         -Endereco endereco
     }
     class Telefone{
@@ -63,6 +61,11 @@ classDiagram
     class Localidade{
         <<abstract>>
         -String nome
+    }
+    class Conta{
+        <<abstract>>
+        -String login
+        -String senha
     }
     class Restaurante{
         -String cnpj
@@ -95,6 +98,8 @@ classDiagram
     Restaurante --* Item
     Restaurante --* Funcionamento
     Restaurante ..> Endereco
+    Conta <|-- Cliente
+    Conta <|-- Restaurante
     Cliente ..> Endereco
     Cliente ..* Telefone
     Endereco ..> Bairro
