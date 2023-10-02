@@ -24,7 +24,7 @@ classDiagram
         -Restaurante restaurante
     }
     class StatusPedido {
-        <<Enumeration>>
+        <<enumeration>>
         CONCLUIDO
         PENDENTE
     }
@@ -60,7 +60,7 @@ classDiagram
         -Restaurante restaurante
     }
     class DiaSemana{
-        <<Enumeration>>
+        <<enumeration>>
         DOMINGO
         SEGUNDA
         TERCA
@@ -83,8 +83,7 @@ classDiagram
     }
     class Estado{}
     class Localidade {
-        <<Abstract>>
+        <<abstract>>
         -String nome
     }
-
 ```
