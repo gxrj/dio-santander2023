@@ -68,7 +68,7 @@ classDiagram
         <<abstract>>
         -String login
         -String senha
-        -String nomeUsuario
+        -String nome
     }
     class Restaurante{
         -String cnpj
@@ -78,8 +78,9 @@ classDiagram
     }
     class Funcionamento{
         -DiaSemana dia
-        -Time inicio
-        -Time fim
+        -LocalTime horarioAbertura
+        -LocalTime horarioFechamento
+        -bool funcionaFeriados
         -Restaurante restaurante
     }
     class DiaSemana{
