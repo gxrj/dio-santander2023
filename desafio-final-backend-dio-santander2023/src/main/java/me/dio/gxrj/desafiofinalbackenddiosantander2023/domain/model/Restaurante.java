@@ -13,27 +13,33 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.Table;
+
+import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
 @Entity
-@Getter @Setter
+@Builder @Getter @Setter
 @Table( name = "restaurante" )
 public class Restaurante extends Conta {
     
     @Id
     @GeneratedValue
     private UUID id;
+
     @Column( nullable = false )
     private String cnpj;
+
     @Column( nullable = false )
     private String descricao;
+
+    @Embedded
+    private Endereco endereco;
+
     @ElementCollection
     @CollectionTable(
         name = "restaurante_funcionamento",
         joinColumns = @JoinColumn( name = "restaurante_id" )
     )
     private List<Funcionamento> horarioFuncionamento;
-    @Embedded
-    private Endereco endereco;
 }

@@ -13,6 +13,7 @@ public class Telefone {
    
     @Column( nullable = false )
     private Integer ddd;
+
     @Column( nullable = false )
     private String numero;
 }

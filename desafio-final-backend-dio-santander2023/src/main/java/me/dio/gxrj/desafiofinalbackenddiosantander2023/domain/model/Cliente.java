@@ -17,10 +17,13 @@ import lombok.Setter;
 @Getter @Setter
 @Table( name = "cliente" )
 public class Cliente extends Conta {
+
     @Column( nullable = false, unique = true )
     private String cpf;
+
     @Embedded
-    private Endereco endereco;  
+    private Endereco endereco;
+ 
     @ElementCollection
     @CollectionTable(
         name = "cliente_telefone",

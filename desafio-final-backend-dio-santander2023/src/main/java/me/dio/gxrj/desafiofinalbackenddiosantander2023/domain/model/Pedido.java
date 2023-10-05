@@ -14,25 +14,33 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
+
+import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
 @Entity
-@Getter @Setter
+@Builder @Getter @Setter
 @Table( name = "pedido" )
 public class Pedido {
  
     @Id
     @GeneratedValue
     private UUID id;
+
     @ManyToMany( mappedBy = "id", fetch = FetchType.EAGER )
     private List<Item> itens;
-    @Enumerated( EnumType.STRING )
+
+    @Enumerated( EnumType.STRING ) 
+    @Builder.Default
     private StatusPedido status = StatusPedido.PENDENTE;
+
     @Column( nullable = false, columnDefinition = "TIMESTAMP" )
     private LocalDateTime data;
+
     @Column( scale = 2 )
     private Double total;
+
     @Column( name = "pgto_confirmado", columnDefinition = "boolean default false" )
     private Boolean pagamentoConfirmado;
 }

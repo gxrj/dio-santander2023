@@ -18,10 +18,13 @@ public abstract class Conta {
     @GeneratedValue
     @Column( columnDefinition = "uuid not null" )
     private UUID id;
+
     @Column( nullable = false )
     private String senha;
+
     @Column( nullable = false, unique = true )
     private String login;
+
     @Column( nullable = false )
     private String nome;
 }

@@ -8,11 +8,12 @@ import jakarta.persistence.Embeddable;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 
+import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
 @Embeddable
-@Getter @Setter
+@Builder @Getter @Setter
 public class Funcionamento {
 
     @Enumerated( EnumType.STRING )
