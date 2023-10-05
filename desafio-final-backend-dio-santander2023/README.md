@@ -97,7 +97,7 @@ classDiagram
     Pedido "1..*" ..> "1" Cliente
     Pedido "1..*" ..> "1" Restaurante
     Pedido ..> StatusPedido
-    Pedido --o Item
+    Pedido "0..*" --o "1..*" Item
     Restaurante --* Item
     Restaurante --* Funcionamento
     Restaurante ..> Endereco

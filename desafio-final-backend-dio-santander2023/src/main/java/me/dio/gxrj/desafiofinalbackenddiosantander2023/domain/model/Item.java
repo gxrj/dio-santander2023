@@ -4,13 +4,17 @@ package me.dio.gxrj.desafiofinalbackenddiosantander2023.domain.model;
 import java.util.UUID;
 
 import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
-
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.Setter;
 
+@Entity
 @Getter @Setter
+@Table( name = "item" )
 public class Item {
     
     @Id
@@ -22,6 +26,6 @@ public class Item {
     private Double preco;
     @Column( name = "em_estoque", nullable = false )
     private Boolean emEstoque;
-    // Todo: Mapear
+    @ManyToOne( targetEntity = Restaurante.class )
     private Restaurante restaurante;
 }
