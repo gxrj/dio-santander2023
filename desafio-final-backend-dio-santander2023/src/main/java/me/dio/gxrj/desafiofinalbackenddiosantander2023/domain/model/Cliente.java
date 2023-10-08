@@ -6,10 +6,11 @@ import java.util.List;
 import jakarta.persistence.CollectionTable;
 import jakarta.persistence.Column;
 import jakarta.persistence.ElementCollection;
-import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.Table;
+
+import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -21,13 +22,22 @@ public class Cliente extends Conta {
     @Column( nullable = false, unique = true )
     private String cpf;
 
-    @Embedded
-    private Endereco endereco;
- 
     @ElementCollection
     @CollectionTable(
         name = "cliente_telefone",
         joinColumns = @JoinColumn( name = "cliente_id" )
     )
     private List<Telefone> telefones;
+
+    @Builder
+    public Cliente( 
+        String nome, String login, String senha, 
+        Endereco endereco, String cpf, List<Telefone> telefones ) {
+            this.nome = nome;
+            this.login = login;
+            this.senha = senha;
+            this.endereco = endereco;
+            this.cpf = cpf;
+            this.telefones = telefones;
+    }
 }

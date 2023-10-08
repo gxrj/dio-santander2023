@@ -2,6 +2,7 @@ package me.dio.gxrj.desafiofinalbackenddiosantander2023.domain.model;
 
 
 import jakarta.persistence.Column;
+import jakarta.persistence.Embedded;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.MappedSuperclass;
@@ -17,14 +18,17 @@ public abstract class Conta {
     @Id
     @GeneratedValue
     @Column( columnDefinition = "uuid not null" )
-    private UUID id;
+    protected UUID id;
 
     @Column( nullable = false )
-    private String senha;
+    protected String senha;
 
     @Column( nullable = false, unique = true )
-    private String login;
+    protected String login;
 
     @Column( nullable = false )
-    private String nome;
+    protected String nome;
+
+    @Embedded
+    protected Endereco endereco;
 }

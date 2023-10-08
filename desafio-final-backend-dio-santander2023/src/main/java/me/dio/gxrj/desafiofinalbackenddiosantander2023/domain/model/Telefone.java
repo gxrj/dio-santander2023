@@ -4,11 +4,12 @@ package me.dio.gxrj.desafiofinalbackenddiosantander2023.domain.model;
 import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
 
+import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
 @Embeddable
-@Getter @Setter
+@Builder @Getter @Setter
 public class Telefone {
    
     @Column( nullable = false )

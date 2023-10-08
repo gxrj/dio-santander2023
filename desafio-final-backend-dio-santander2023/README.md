@@ -38,7 +38,6 @@ classDiagram
     }
     class Cliente{
         -String cpf
-        -Endereco endereco
     }
     class Telefone{
         -int ddd
@@ -59,22 +58,50 @@ classDiagram
         -Estado estado
     }
     class Estado{
+        <<enumaration>>
+        AC
+        AL
+        AP
+        AM
+        BA
+        CE
+        DF
+        ES
+        GO
+        MA
+        MG
+        MS
+        MT
+        PA
+        PB
+        PE
+        PI
+        PR
+        RJ
+        RN
+        RO
+        RS
+        RR
+        SC
+        SE
+        SP
+        TO
     }
     class Localidade{
         <<abstract>>
-        -String nome
+        #String nome
     }
     class Conta{
         <<abstract>>
-        -String login
-        -String senha
-        -String nome
+        #String login
+        #String senha
+        #String nome
+        #Endereco endereco
     }
     class Restaurante{
         -String cnpj
         -String descricao
         -List~Funcionamento~ horarioFuncionamento
-        -Endereco endereco
     }
     class Funcionamento{
         -DiaSemana dia

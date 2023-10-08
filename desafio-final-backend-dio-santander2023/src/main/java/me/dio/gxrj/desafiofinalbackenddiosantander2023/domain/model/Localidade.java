@@ -15,7 +15,7 @@ public abstract class Localidade {
 
     @Id 
     @GeneratedValue
-    Long id;
+    protected Long id;
     @Column( nullable = false, unique = true )
-    private String nome;
+    protected String nome;
 }

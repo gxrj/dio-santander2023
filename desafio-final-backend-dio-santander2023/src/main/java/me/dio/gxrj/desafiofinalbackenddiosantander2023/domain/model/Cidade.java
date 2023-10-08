@@ -10,9 +10,15 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Entity
-@Builder @Getter @Setter
+@Getter @Setter
 @Table( name = "cidade" )
 public class Cidade extends Localidade {
     @Column( nullable = false )
     private Estado estado;
+
+    @Builder
+    public Cidade( String nome, Estado estado ) {
+        this.nome = nome;
+        this.estado = estado;
+    }
 }
