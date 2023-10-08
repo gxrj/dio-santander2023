@@ -58,7 +58,7 @@ classDiagram
         -Estado estado
     }
     class Estado{
-        <<enumaration>>
+        <<enumeration>>
         AC
         AL
         AP
