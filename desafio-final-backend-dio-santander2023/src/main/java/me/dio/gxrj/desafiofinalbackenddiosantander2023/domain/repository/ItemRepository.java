@@ -10,6 +10,7 @@ import me.dio.gxrj.desafiofinalbackenddiosantander2023.domain.model.Item;
 import me.dio.gxrj.desafiofinalbackenddiosantander2023.domain.model.Restaurante;
 
 public interface ItemRepository extends JpaRepository<Item, UUID> {
-    List<Item> findByRestaurante( Restaurante restaurante );
     List<Item> findByDescricao( String descricao );
+    List<Item> findByRestaurante( Restaurante restaurante );
+    List<Item> findByPrecoBetween( Double min, Double max ); // Todo: Testar
 }

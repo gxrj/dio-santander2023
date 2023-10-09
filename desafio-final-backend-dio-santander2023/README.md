@@ -11,6 +11,8 @@ Trata-se de uma aplicação multi-tenant em que o database e o schema são compa
 
 - O sistema de pagamentos foi desconsiderado devido sua complexidade que pode ser implementados em futuras versões, seja integrando uma API de pagamentos terceirizada ou desenvolvendo um subsistema de pagamentos próprio.
 
+- Aspectos de geolocalização como latitude, longitude e por consequência raio de distância foram desconsiderados também devido ao tempo disponível e complexidade.
+
 Segue abaixo o diagrama de classes de um MVP.
 
 ### Diagrama de classes
@@ -104,21 +106,11 @@ classDiagram
         -List~Funcionamento~ horarioFuncionamento
     }
     class Funcionamento{
-        -DiaSemana dia
+        -DayOfWeek dia
         -LocalTime horarioAbertura
         -LocalTime horarioFechamento
         -bool funcionaFeriados
         -Restaurante restaurante
-    }
-    class DiaSemana{
-        <<enumeration>>
-        DOMINGO
-        SEGUNDA
-        TERCA
-        QUARTA
-        QUINTA
-        SEXTA
-        SABADO
     }
 
     Pedido "1..*" ..> "1" Cliente
@@ -138,7 +130,6 @@ classDiagram
     Localidade <|-- Bairro
     Localidade <|-- Cidade
     Localidade <|-- Estado
-    Funcionamento ..> DiaSemana
 
 ```
 

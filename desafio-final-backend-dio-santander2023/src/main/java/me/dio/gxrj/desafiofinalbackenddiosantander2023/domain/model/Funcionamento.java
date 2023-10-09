@@ -1,6 +1,7 @@
 package me.dio.gxrj.desafiofinalbackenddiosantander2023.domain.model;
 
 
+import java.time.DayOfWeek;
 import java.time.LocalTime;
 
 import jakarta.persistence.Column;
@@ -17,7 +18,7 @@ import lombok.Setter;
 public class Funcionamento {
 
     @Enumerated( EnumType.STRING )
-    private DiaSemana dia;
+    private DayOfWeek dia;
     @Column( name = "abetura", nullable = false, columnDefinition = "TIME" )
     private LocalTime horarioAbertura;
     @Column( name = "fechamento", nullable = false, columnDefinition = "TIME" ) 
