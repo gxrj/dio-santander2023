@@ -1,4 +1,4 @@
-package me.dio.gxrj.desafiofinalbackenddiosantander2023.domain.service;
+package me.dio.gxrj.desafiofinalbackenddiosantander2023.service;
 
 
 import java.util.List;
