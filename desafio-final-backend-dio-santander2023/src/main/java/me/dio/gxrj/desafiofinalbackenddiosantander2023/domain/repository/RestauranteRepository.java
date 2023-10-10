@@ -5,8 +5,10 @@ import java.time.DayOfWeek;
 import java.time.LocalTime;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
@@ -15,6 +17,9 @@ import me.dio.gxrj.desafiofinalbackenddiosantander2023.domain.model.Cidade;
 import me.dio.gxrj.desafiofinalbackenddiosantander2023.domain.model.Restaurante;
 
 public interface RestauranteRepository extends JpaRepository<Restaurante, UUID> {
+    Optional<Restaurante> findByCnpj( String cnpj );
+    Optional<Restaurante> findByLogin( String login );
+    List<Restaurante> findByNomeLike( String nome );
     List<Restaurante> findByEndereco_Bairro( Bairro bairro );
     List<Restaurante> findByEndereco_Bairro_Cidade( Cidade cidade );
 
@@ -45,6 +50,7 @@ public interface RestauranteRepository extends JpaRepository<Restaurante, UUID> 
         where f.dia = ?2 
         and r.endereco.bairro.cidade = ?1
         and f.horarioAbertura >= ?3
+        order by f.horarioAbertura
     """ )
-    List<Restaurante> findByAbertosEmBreve( Cidade cidade, DayOfWeek dia, LocalTime hora );
+    List<Restaurante> findByAbertosEmBreve( Cidade cidade, DayOfWeek dia, LocalTime hora, Pageable limit );
 }

@@ -10,18 +10,41 @@ import org.springframework.data.jpa.repository.Query;
 
 import me.dio.gxrj.desafiofinalbackenddiosantander2023.domain.model.Cliente;
 import me.dio.gxrj.desafiofinalbackenddiosantander2023.domain.model.Pedido;
-import me.dio.gxrj.desafiofinalbackenddiosantander2023.domain.model.Restaurante;
 
 public interface PedidoRepository extends JpaRepository<Pedido, UUID> {
 
+    List<Pedido> findByCliente_Cpf( String cpfString );
     List<Pedido> findByCliente( Cliente cliente );
+
+
     // lista pedidos feitos no restaurante em data intervalo 
-    @Query( "select p from Pedido p where p.restaurante = ?1 and p.data between ?2 and ?3 and p.pagamentoConfirmado = true" )
-    List<Pedido> findByRestauranteBetween( Restaurante restaurante, LocalDateTime incio, LocalDateTime fim );
+    @Query( """
+        select p from Pedido p 
+        where p.restaurante.cnpj = ?1 
+        and p.data between ?2 and ?3 
+        and p.pagamentoConfirmado = true
+    """ )
+    List<Pedido> findByRestaurante_CnpjBetween( 
+                            String cnpjRestaurante, LocalDateTime incio, LocalDateTime fim );
+
+
     // lista pedidos pendentes no restaurante
-    @Query( "select p from Pedido p where p.restaurante = ?1 and p.status = 'pendente' and p.pagamentoConfirmado = true" )
-    List<Pedido> findPendentesByRestaurante( Restaurante restaurante );
+    @Query( """
+        select p from Pedido p 
+        where p.restaurante.cnpj = ?1 
+        and p.status = 'pendente' 
+        and p.pagamentoConfirmado = true
+    """ )
+    List<Pedido> findPendentesByRestaurante_Cnpj( String cnpjRestaurante );
+
+
     // lista pedidos concluidos no restaurante por data
-    @Query( "select p from Pedido p where p.restaurante = ?1 and p.data between ?2 and ?3 and p.status = 'concluido'" )
-    List<Pedido> findConcluidosByRestauranteBetween( Restaurante restaurante, LocalDateTime incio, LocalDateTime fim );
+    @Query( """
+        select p from Pedido p 
+        where p.restaurante.cnpj = ?1 
+        and p.data between ?2 and ?3 
+        and p.status = 'concluido'
+    """ )
+    List<Pedido> findConcluidosByRestaurante_CnpjBetween( 
+                        String cnpjRestaurante, LocalDateTime incio, LocalDateTime fim );
 }
