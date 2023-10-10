@@ -14,6 +14,7 @@ import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
@@ -31,7 +32,12 @@ public class Pedido {
     @GeneratedValue
     private UUID id;
 
-    @ManyToMany( mappedBy = "id", fetch = FetchType.EAGER )
+    @ManyToMany( fetch = FetchType.EAGER )
+    @JoinTable( 
+        name = "itens_pedido", 
+        joinColumns = @JoinColumn( name = "pedido_id" ),
+        inverseJoinColumns = @JoinColumn( name = "item_id" )
+    )
     private List<Item> itens;
 
     @Enumerated( EnumType.STRING ) 

@@ -1,8 +1,9 @@
 package me.dio.gxrj.desafiofinalbackenddiosantander2023.domain.model;
 
 
-import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 import lombok.Builder;
@@ -13,7 +14,8 @@ import lombok.Setter;
 @Getter @Setter
 @Table( name = "bairro" )
 public class Bairro extends Localidade {
-    @Column( nullable = false )
+    @ManyToOne
+    @JoinColumn( name = "cidade_id", nullable = false, referencedColumnName = "id" )
     private Cidade cidade;
 
     @Builder

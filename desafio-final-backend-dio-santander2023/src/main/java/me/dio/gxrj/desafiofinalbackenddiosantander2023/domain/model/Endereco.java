@@ -3,6 +3,8 @@ package me.dio.gxrj.desafiofinalbackenddiosantander2023.domain.model;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 
 import lombok.Builder;
 import lombok.Getter;
@@ -24,6 +26,7 @@ public class Endereco {
     @Column
     private String referencia;
 
-    @Column( nullable = false )
+    @ManyToOne
+    @JoinColumn( name = "bairro_id", nullable = false, referencedColumnName = "id" )
     private Bairro bairro;
 }
