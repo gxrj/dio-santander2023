@@ -21,19 +21,19 @@ public interface RestauranteRepository extends JpaRepository<Restaurante, UUID> 
     // lista retaurantes da cidade que apresentam o item pesquisado no cardápio
     @Query( """
         select r from Restaurante r 
-        where r.endereco.bairro.cidade = ?1
         left join Item i 
         where i.restaurante = r 
         and i.descricao like %?2
+        and r.endereco.bairro.cidade = ?1
     """ )
     List<Restaurante> findByDescricaoItem( Cidade cidade, String descricaoItem );
 
     // lista retaurantes da cidade abertos
     @Query( """
         select r from Restaurante r 
-        where r.endereco.bairro.cidade = ?1
         join r.horarioFuncionamento f 
         where f.dia = ?2 
+        and r.endereco.bairro.cidade = ?1
         and f.horarioFechamento > ?3
     """ )
     List<Restaurante> findByAbertos( Cidade cidade, DayOfWeek dia, LocalTime horaAtual );
@@ -41,9 +41,9 @@ public interface RestauranteRepository extends JpaRepository<Restaurante, UUID> 
     // lista restaurantes da cidade que vão abrir
     @Query( """
         select r from Restaurante r 
-        where r.endereco.bairro.cidade = ?1
         join r.horarioFuncionamento f 
-        where f.dia =?2 
+        where f.dia = ?2 
+        and r.endereco.bairro.cidade = ?1
         and f.horarioAbertura >= ?3
     """ )
     List<Restaurante> findByAbertosEmBreve( Cidade cidade, DayOfWeek dia, LocalTime hora );
