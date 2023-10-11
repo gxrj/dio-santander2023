@@ -17,8 +17,8 @@ public class ClienteService {
         this.repository = repository;
     }
 
-    public void salvar( Cliente cliente ) {
-        repository.save( cliente );
+    public Cliente criar( Cliente cliente ) {
+        return repository.save( cliente );
     }
 
     public Cliente encontrarPorId( UUID id ) {
@@ -33,8 +33,27 @@ public class ClienteService {
         return repository.findByCpf( cpf ).orElse( null );
     }
 
-    public void deletar( Cliente cliente ) {
-        repository.delete( cliente );
+    public Cliente editar( UUID id, Cliente clienteAtualizado ) {
+        return repository.findById( id )
+                    .map( 
+                        el -> {
+                            el.setCpf( clienteAtualizado.getCpf() );
+                            el.setNome( clienteAtualizado.getNome() );
+                            el.setTelefones( clienteAtualizado.getTelefones() );
+                            el.setEndereco( clienteAtualizado.getEndereco() );
+                            el.setSenha( clienteAtualizado.getSenha() );
+                            return repository.save( el );
+                         } )
+                    .orElse( null );
     }
 
+    public boolean deletar( UUID id ) {
+        return repository.findById( id )
+                .map( 
+                    el -> { 
+                        repository.delete( el );
+                        return true;
+                    } )
+                .orElse( false );
+    }
 }

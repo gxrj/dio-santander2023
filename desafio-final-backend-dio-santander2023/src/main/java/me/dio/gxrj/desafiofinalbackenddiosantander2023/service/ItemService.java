@@ -22,8 +22,8 @@ public class ItemService {
         this.restauranteRepository = restauranteRepository;
     }
 
-    public void salvar( Item item ) {
-        repository.save( item );
+    public Item salvar( Item item ) {
+        return repository.save( item );
     }
 
     public void salvarMultiplos( List<Item> itens ) {

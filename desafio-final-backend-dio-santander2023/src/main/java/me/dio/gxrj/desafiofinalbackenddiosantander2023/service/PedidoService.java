@@ -19,8 +19,8 @@ public class PedidoService {
         this.repository = repository;
     }
 
-    public void salvar( Pedido pedido ) {
-        repository.save( pedido );
+    public Pedido salvar( Pedido pedido ) {
+        return repository.save( pedido );
     }
 
     public void salvarMultiplos( List<Pedido> pedidos ) {

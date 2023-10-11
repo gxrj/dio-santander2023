@@ -22,8 +22,8 @@ public class RestauranteService {
         this.repository = repository;
     }
 
-    public void salvar( Restaurante restaurante ) {
-        repository.save( restaurante );
+    public Restaurante salvar( Restaurante restaurante ) {
+        return repository.save( restaurante );
     }
 
     public void deletar( Restaurante restaurante ) {

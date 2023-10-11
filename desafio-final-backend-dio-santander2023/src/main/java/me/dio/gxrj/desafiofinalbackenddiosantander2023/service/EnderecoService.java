@@ -22,8 +22,8 @@ public class EnderecoService {
         this.cidadeRepository = cidadeRepository;
     }
 
-    public void salvarBairro( Bairro bairro ) {
-        bairroRepository.save( bairro );
+    public Bairro salvarBairro( Bairro bairro ) {
+        return bairroRepository.save( bairro );
     }
 
     public void salvarCidade( Cidade cidade ) {
