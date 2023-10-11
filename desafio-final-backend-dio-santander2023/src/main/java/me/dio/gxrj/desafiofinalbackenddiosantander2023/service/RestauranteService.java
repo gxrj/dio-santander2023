@@ -3,6 +3,7 @@ package me.dio.gxrj.desafiofinalbackenddiosantander2023.service;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.UUID;
 
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -27,6 +28,10 @@ public class RestauranteService {
 
     public void deletar( Restaurante restaurante ) {
         repository.delete( restaurante );
+    }
+
+    public Restaurante encontrarPorId( UUID id ) {
+        return repository.findById( id ).orElse( null );
     }
 
     public Restaurante buscarPorCnpj( String cnpj ) {

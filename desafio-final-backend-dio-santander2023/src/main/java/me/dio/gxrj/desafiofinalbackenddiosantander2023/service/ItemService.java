@@ -2,6 +2,7 @@ package me.dio.gxrj.desafiofinalbackenddiosantander2023.service;
 
 
 import java.util.List;
+import java.util.UUID;
 
 import org.springframework.stereotype.Service;
 
@@ -31,6 +32,10 @@ public class ItemService {
 
     public void deletar( Item item ) {
         repository.delete( item );
+    }
+
+    public Item encontrarPorId( UUID id ) {
+        return repository.findById( id ).orElse( null );
     }
 
     public List<Item> encontrarItensPorDescricao( String descricao ) {

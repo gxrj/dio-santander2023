@@ -1,6 +1,8 @@
 package me.dio.gxrj.desafiofinalbackenddiosantander2023.service;
 
 
+import java.util.UUID;
+
 import org.springframework.stereotype.Service;
 
 import me.dio.gxrj.desafiofinalbackenddiosantander2023.domain.model.Cliente;
@@ -17,6 +19,10 @@ public class ClienteService {
 
     public void salvar( Cliente cliente ) {
         repository.save( cliente );
+    }
+
+    public Cliente encontrarPorId( UUID id ) {
+        return repository.findById( id ).orElse( null );
     }
 
     public Cliente encontrarPorLogin( String login ) {

@@ -3,6 +3,7 @@ package me.dio.gxrj.desafiofinalbackenddiosantander2023.service;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.UUID;
 
 import org.springframework.stereotype.Service;
 
@@ -28,6 +29,10 @@ public class PedidoService {
 
     public void deletar( Pedido pedido ) {
         repository.delete( pedido );
+    }
+
+    public Pedido encontrarPorId( UUID id ) {
+        return repository.findById( id ).orElse( null );
     }
 
     public List<Pedido> buscarPorCliente( String cpf ) {
