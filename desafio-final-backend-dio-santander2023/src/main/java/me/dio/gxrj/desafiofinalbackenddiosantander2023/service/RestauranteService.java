@@ -8,7 +8,6 @@ import java.util.UUID;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import me.dio.gxrj.desafiofinalbackenddiosantander2023.domain.model.Bairro;
 import me.dio.gxrj.desafiofinalbackenddiosantander2023.domain.model.Cidade;
 import me.dio.gxrj.desafiofinalbackenddiosantander2023.domain.model.Restaurante;
 import me.dio.gxrj.desafiofinalbackenddiosantander2023.domain.repository.RestauranteRepository;
@@ -69,16 +68,16 @@ public class RestauranteService {
         return repository.findByNomeLike( nome );
     }
 
-    public List<Restaurante> buscarRestaurantesPorBairro( Bairro bairro ) {
-        return repository.findByEndereco_Bairro( bairro );
+    public List<Restaurante> buscarRestaurantesPorBairro( String nomeBairro ) {
+        return repository.findByEndereco_Bairro_Nome( nomeBairro );
     }
 
-    public List<Restaurante> buscarRestaurantesPorCidade( Cidade cidade ) {
-        return repository.findByEndereco_Bairro_Cidade( cidade );
+    public List<Restaurante> buscarRestaurantesPorCidade( String nomeCidade ) {
+        return repository.findByEndereco_Bairro_Cidade_Nome( nomeCidade );
     }
 
     public List<Restaurante> buscarRestaurantesPorItem( Cidade cidade, String descricaoItem ) {
-        return repository.findByDescricaoItem( cidade, descricaoItem );
+        return repository.findByDescricaoItemCardapio( cidade, descricaoItem );
     }
 
     public List<Restaurante> buscarAbertos( Cidade cidade ) {

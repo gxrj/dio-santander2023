@@ -63,26 +63,28 @@ public class ItemCardapioController {
         return ResponseUtils.prepararGetResponse( resultados );
     }
 
-    @GetMapping( "/restaurante" )
-    public ResponseEntity<List<ItemCardapio>> buscarItensPeloRestaurante( 
-                                    @PathVariable( name = "cnpj", required = false ) String cnpjRestaurante,
-                                    @PathVariable( name = "login", required = false ) String loginRestaurante ) {
+    @GetMapping( "/restaurante/{cnpj}" )
+    public ResponseEntity<List<ItemCardapio>> buscarItensPeloCnpjRestaurante( 
+                                                        @PathVariable String cnpjRestaurante ) {
 
-        var parametrosInvalidos = parametrosNulos( cnpjRestaurante, loginRestaurante ) 
-                                || parametrosVazios( cnpjRestaurante, loginRestaurante );
-
-        if( parametrosInvalidos )
+        if( cnpjRestaurante.isBlank() )
             return ResponseUtils.prepararGetResponse( null );
 
-        List<ItemCardapio> resultados;
-
-        if( loginRestaurante.isBlank() ) 
-            resultados = service.encontrarItensPorCnpjRestaurante( cnpjRestaurante );
-        else
-            resultados = service.encontrarItensPorLoginRestaurante( loginRestaurante );
-
-         return ResponseUtils.prepararGetResponse( resultados );
+        var resultados = service.encontrarItensPorCnpjRestaurante( cnpjRestaurante );
+        return ResponseUtils.prepararGetResponse( resultados );
     }
+
+    @GetMapping( "/restaurante/{login}" )
+    public ResponseEntity<List<ItemCardapio>> buscarItensPeloLoginRestaurante( 
+                                                        @PathVariable String loginRestaurante ) {
+
+        if( loginRestaurante.isBlank() )
+            return ResponseUtils.prepararGetResponse( null );
+
+        var resultados = service.encontrarItensPorLoginRestaurante( loginRestaurante );
+        return ResponseUtils.prepararGetResponse( resultados );
+    }
+
 
     @GetMapping( "/pesquisa_por_preco" )
     public ResponseEntity<List<ItemCardapio>> buscarPelaFaixaDePreco( @PathVariable Double min, @PathVariable Double max ) {
@@ -95,13 +97,5 @@ public class ItemCardapioController {
 
     private boolean validarParametros( Double min, Double max ) {
         return ( min > 0 ) && ( max > 0 ) && ( max > min );
-    }
-
-    private boolean parametrosNulos( String arg1, String arg2 ) {
-        return arg1 == null && arg2 == null;
-    }
-
-    private boolean parametrosVazios( String arg1, String arg2 ) {
-        return arg1.isBlank() && arg2.isBlank();
     }
 }

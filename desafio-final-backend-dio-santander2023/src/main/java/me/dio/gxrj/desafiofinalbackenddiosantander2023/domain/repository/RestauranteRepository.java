@@ -12,7 +12,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
-import me.dio.gxrj.desafiofinalbackenddiosantander2023.domain.model.Bairro;
 import me.dio.gxrj.desafiofinalbackenddiosantander2023.domain.model.Cidade;
 import me.dio.gxrj.desafiofinalbackenddiosantander2023.domain.model.Restaurante;
 
@@ -20,8 +19,8 @@ public interface RestauranteRepository extends JpaRepository<Restaurante, UUID> 
     Optional<Restaurante> findByCnpj( String cnpj );
     Optional<Restaurante> findByLogin( String login );
     List<Restaurante> findByNomeLike( String nome );
-    List<Restaurante> findByEndereco_Bairro( Bairro bairro );
-    List<Restaurante> findByEndereco_Bairro_Cidade( Cidade cidade );
+    List<Restaurante> findByEndereco_Bairro_Nome( String nomeBairro );
+    List<Restaurante> findByEndereco_Bairro_Cidade_Nome( String nomeCidade );
 
     // lista retaurantes da cidade que apresentam o item pesquisado no cardápio
     @Query( """
@@ -31,7 +30,7 @@ public interface RestauranteRepository extends JpaRepository<Restaurante, UUID> 
         and i.descricao like %?2
         and r.endereco.bairro.cidade = ?1
     """ )
-    List<Restaurante> findByDescricaoItem( Cidade cidade, String descricaoItem );
+    List<Restaurante> findByDescricaoItemCardapio( Cidade cidade, String descricaoItem );
 
     // lista retaurantes da cidade abertos
     @Query( """

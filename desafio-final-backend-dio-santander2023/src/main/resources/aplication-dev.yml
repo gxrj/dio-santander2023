@@ -1,0 +1,15 @@
+spring:
+    datasource:
+        username: sa
+        password:
+        name: ifood_db
+        driver-class-name: org.h2.Driver
+        url: jdbc:h2:file:./database/ifood_db
+    jpa:
+        generate-ddl: true
+        database-platform: org.hibernate.dialect.H2Dialect
+        hibernate:
+                ddl-auto: create-drop
+    h2:
+        console:
+                enabled: true
