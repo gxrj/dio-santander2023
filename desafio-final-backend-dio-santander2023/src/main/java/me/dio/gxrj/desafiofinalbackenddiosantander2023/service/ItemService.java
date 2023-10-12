@@ -26,12 +26,32 @@ public class ItemService {
         return repository.save( item );
     }
 
-    public void salvarMultiplos( List<Item> itens ) {
-        repository.saveAll( itens );
+    public List<Item> salvarMultiplos( List<Item> itens ) {
+        return repository.saveAll( itens );
     }
 
-    public void deletar( Item item ) {
-        repository.delete( item );
+    public Item editar( UUID id, Item novoItem ) {
+        return repository.findById( id )
+                    .map(
+                        el -> {
+                            el.setPreco( el.getPreco() );
+                            el.setDescricao( novoItem.getDescricao() );
+                            el.setEmEstoque( novoItem.getEmEstoque() );
+                            return el;
+                        }
+                    )
+                    .orElse( null );
+    }
+
+    public boolean deletar( UUID id ) {
+        return repository.findById( id )
+                .map(
+                    el -> {
+                        repository.delete( el );
+                        return true;
+                    }
+                )
+                .orElse( false );
     }
 
     public Item encontrarPorId( UUID id ) {

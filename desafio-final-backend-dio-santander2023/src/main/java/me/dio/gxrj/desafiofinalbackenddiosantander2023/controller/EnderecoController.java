@@ -103,20 +103,20 @@ public class EnderecoController {
     }
 
     @PutMapping( "/bairro/{id}" )
-    public ResponseEntity<Bairro> editarBairro( @RequestBody Bairro bairroAtualizado, @PathVariable Long id ) {
-        if( bairroAtualizado == null || id == null )
+    public ResponseEntity<Bairro> editarBairro( @RequestBody Bairro alteracao, @PathVariable Long id ) {
+        if( alteracao == null || id == null )
             return ResponseUtils.prepararPutResponse( null, null, null );
 
-        var bairroSalvo = enderecoService.editarBairro( id, bairroAtualizado );
+        var bairroSalvo = enderecoService.editarBairro( id, alteracao );
         return ResponseUtils.prepararPutResponse( bairroSalvo, bairroSalvo.getId(), HttpStatus.OK );
     }
 
     @PutMapping( "/cidade/{id}" )
-    public ResponseEntity<Cidade> editarCidade( @RequestBody Cidade cidadeAtualizada, @PathVariable Long id ) {
-        if( cidadeAtualizada == null || id == null )
+    public ResponseEntity<Cidade> editarCidade( @RequestBody Cidade altracao, @PathVariable Long id ) {
+        if( altracao == null || id == null )
             return ResponseUtils.prepararPutResponse( null, null, null );
 
-        var cidadeSalva = enderecoService.editarCidade( id, cidadeAtualizada );
+        var cidadeSalva = enderecoService.editarCidade( id, altracao );
         return ResponseUtils.prepararPutResponse( cidadeSalva, cidadeSalva.getId(), HttpStatus.OK );
     }
 

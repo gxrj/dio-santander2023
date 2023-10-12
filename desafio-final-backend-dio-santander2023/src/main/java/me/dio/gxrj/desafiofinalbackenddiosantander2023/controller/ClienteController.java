@@ -43,12 +43,12 @@ public class ClienteController {
     }
 
     @PutMapping( "/{id}" )
-    public ResponseEntity<Cliente> alterar( @RequestBody Cliente clienteAtualizado, @PathVariable UUID id ) {
+    public ResponseEntity<Cliente> alterar( @RequestBody Cliente alteracao, @PathVariable UUID id ) {
 
-        if( clienteAtualizado == null || id == null ) 
+        if( alteracao == null || id == null ) 
             return ResponseUtils.prepararPostResponse( null, null, null );
 
-        var cliente = clienteService.editar( id, clienteAtualizado );
+        var cliente = clienteService.editar( id, alteracao );
     
         return ResponseUtils.prepararPutResponse( cliente, cliente.getId(), HttpStatus.OK );
     }
