@@ -26,8 +26,31 @@ public class RestauranteService {
         return repository.save( restaurante );
     }
 
-    public void deletar( Restaurante restaurante ) {
-        repository.delete( restaurante );
+    public Restaurante editar( UUID id, Restaurante restaurante ) {
+        return repository.findById( id )
+                .map(
+                    el -> {
+                        el.setNome( restaurante.getNome() );
+                        el.setCnpj( restaurante.getCnpj() );
+                        el.setSenha( restaurante.getSenha() );
+                        el.setEndereco( restaurante.getEndereco() );
+                        el.setDescricao( restaurante.getDescricao() );
+                        el.setHorarioFuncionamento( restaurante.getHorarioFuncionamento() );
+                        return repository.save( el );
+                    }
+                )
+                .orElse( null );
+    }
+
+    public boolean deletar( UUID id ) {
+        return repository.findById( id )
+                .map(
+                    el -> {
+                        repository.delete( el );
+                        return true;
+                    }
+                )
+                .orElse( false );
     }
 
     public Restaurante encontrarPorId( UUID id ) {

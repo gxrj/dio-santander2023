@@ -6,6 +6,7 @@ import java.util.UUID;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -68,6 +69,24 @@ public class ItemController {
             return ResponseUtils.prepararGetResponse( null );
 
         var resultados = service.encontrarItensPorDescricao( descricao );
+        return ResponseUtils.prepararGetResponse( resultados );
+    }
+
+    @GetMapping( "/restaurante" )
+    public ResponseEntity<List<Item>> buscarPeloCnpjRestaurante( @PathVariable( "cnpj" ) String cnpjRestaurante ) {
+        if( cnpjRestaurante == null || cnpjRestaurante.isBlank() )
+            return ResponseUtils.prepararGetResponse( null );
+
+        var resultados = service.encontrarItensPorCnpjRestaurante( cnpjRestaurante );
+        return ResponseUtils.prepararGetResponse( resultados );
+    }
+
+    @GetMapping( "/restaurante" )
+    public ResponseEntity<List<Item>> buscarPeloLoginRestaurante( @PathVariable( "login" ) String loginRestaurante ) {
+        if( loginRestaurante == null || loginRestaurante.isBlank() )
+            return ResponseUtils.prepararGetResponse( null );
+
+        var resultados = service.encontrarItensPorLoginRestaurante( loginRestaurante );
         return ResponseUtils.prepararGetResponse( resultados );
     }
 

@@ -112,11 +112,11 @@ public class EnderecoController {
     }
 
     @PutMapping( "/cidade/{id}" )
-    public ResponseEntity<Cidade> editarCidade( @RequestBody Cidade altracao, @PathVariable Long id ) {
-        if( altracao == null || id == null )
+    public ResponseEntity<Cidade> editarCidade( @RequestBody Cidade alteracao, @PathVariable Long id ) {
+        if( alteracao == null || id == null )
             return ResponseUtils.prepararPutResponse( null, null, null );
 
-        var cidadeSalva = enderecoService.editarCidade( id, altracao );
+        var cidadeSalva = enderecoService.editarCidade( id, alteracao );
         return ResponseUtils.prepararPutResponse( cidadeSalva, cidadeSalva.getId(), HttpStatus.OK );
     }
 

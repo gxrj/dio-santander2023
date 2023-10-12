@@ -20,15 +20,39 @@ public class PedidoService {
     }
 
     public Pedido salvar( Pedido pedido ) {
-        return repository.save( pedido );
+
+        if( validarPedido( pedido ) ) {
+            calcularTotal( pedido );
+            pedido.setData( LocalDateTime.now() );
+            return repository.save( pedido );
+        }
+
+        return null;
     }
 
-    public void salvarMultiplos( List<Pedido> pedidos ) {
-        repository.saveAll( pedidos );
+    public Pedido editar( UUID id, Pedido novoPedido ) {
+        return repository.findById( id )
+                        .map(
+                            el -> {
+                                el.setPagamentoConfirmado( novoPedido.getPagamentoConfirmado() );
+                                el.setStatus( novoPedido.getStatus() );
+                                el.setItens( novoPedido.getItens() );
+                                el.setTotal( novoPedido.getTotal() );
+                                return el;
+                            }
+                        )
+                        .orElse( null );
     }
 
-    public void deletar( Pedido pedido ) {
-        repository.delete( pedido );
+    public boolean deletar( UUID id ) {
+        return repository.findById( id )
+                        .map(
+                            el -> {
+                                repository.delete( el );
+                                return true;
+                            }
+                        )
+                        .orElse( false );
     }
 
     public Pedido encontrarPorId( UUID id ) {
@@ -51,5 +75,17 @@ public class PedidoService {
     public List<Pedido> buscarConcluidosPorRestauranteEntre( 
                             String cnpjRestaurante, LocalDateTime inicio, LocalDateTime fim ) {
         return repository.findConcluidosByRestaurante_CnpjBetween( cnpjRestaurante, inicio, fim );
+    }
+
+    private boolean validarPedido( Pedido pedido ) {
+        return pedido.getItens() == null || pedido.getItens().isEmpty();
+    }
+
+    private void calcularTotal( Pedido pedido ) {
+        var total = pedido.getItens()
+            .parallelStream()
+            .map( el -> el.getPreco() )
+            .reduce( 0d, ( x, y ) -> x + y );
+        pedido.setTotal( total );
     }
 }
