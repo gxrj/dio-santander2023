@@ -33,23 +33,13 @@ public class ClienteController {
 
     @PostMapping
     public ResponseEntity<Cliente> criar( @RequestBody Cliente cliente ) {
-
-        if( cliente == null ) 
-            return ResponseUtils.prepararPostResponse( null, null, null );
-
         var clienteSalvo = clienteService.criar( cliente );
-
         return ResponseUtils.prepararPostResponse( clienteSalvo, clienteSalvo.getId(), HttpStatus.CREATED );
     }
 
     @PutMapping( "/{id}" )
     public ResponseEntity<Cliente> alterar( @RequestBody Cliente alteracao, @PathVariable UUID id ) {
-
-        if( alteracao == null || id == null ) 
-            return ResponseUtils.prepararPostResponse( null, null, null );
-
         var cliente = clienteService.editar( id, alteracao );
-    
         return ResponseUtils.prepararPutResponse( cliente, cliente.getId(), HttpStatus.OK );
     }
 

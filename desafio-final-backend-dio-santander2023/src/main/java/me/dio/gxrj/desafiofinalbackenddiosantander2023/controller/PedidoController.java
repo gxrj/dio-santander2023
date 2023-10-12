@@ -33,18 +33,12 @@ public class PedidoController {
 
     @PostMapping
     public ResponseEntity<Pedido> criar( @RequestBody Pedido pedido ) {
-        if( pedido == null ) 
-            return ResponseUtils.prepararPostResponse( null, null, null );
-
         var pedidoSalvo = service.salvar( pedido );
         return ResponseUtils.prepararPostResponse( pedidoSalvo, pedidoSalvo.getId(), HttpStatus.CREATED );
     }
 
     @PutMapping( "/{id}" )
     public ResponseEntity<Pedido> editar( @RequestBody Pedido alteracao, @PathVariable UUID id ) {
-        if( id == null || alteracao == null ) 
-            return ResponseUtils.prepararPutResponse( null, null, null );
-
         var pedidoSalvo = service.editar( id, alteracao );
         return ResponseUtils.prepararPutResponse( pedidoSalvo, pedidoSalvo.getId(), HttpStatus.OK );
     }
@@ -57,16 +51,13 @@ public class PedidoController {
 
     @GetMapping( "/{id}" )
     public ResponseEntity<Pedido> buscarPorId( @PathVariable UUID id ) {
-        if( id == null )
-            return ResponseUtils.prepararGetResponse( null );
-
         var pedido = service.encontrarPorId( id );
         return ResponseUtils.prepararGetResponse( pedido );
     }
 
     @GetMapping( "/cliente" )
     public ResponseEntity<List<Pedido>> buscarPorCliente( @RequestParam( "cpf" ) String cpf ) {
-        if( cpf == null || cpf.isBlank() )
+        if( cpf.isBlank() )
             return ResponseUtils.prepararGetResponse( null );
 
         var pedidos = service.buscarPorCliente( cpf );
@@ -77,7 +68,7 @@ public class PedidoController {
     public ResponseEntity<List<Pedido>> buscarPendentesPorRestaurante( 
                                     @RequestParam( "cnpj" ) String cnpj ) {
 
-        if( checarCnpjInvalido( cnpj ) )
+        if( cnpj.isBlank() )
             return ResponseUtils.prepararGetResponse( null );
 
         var pedidos = service.buscarPendentesPorRestaurante( cnpj );
@@ -90,7 +81,7 @@ public class PedidoController {
                                     @RequestParam( "dt_inicio" ) LocalDateTime inicio, 
                                     @RequestParam( "dt_fim" ) LocalDateTime fim ) {
 
-        if( checarCnpjInvalido( cnpj ) || checarIntervaloInvalido( inicio, fim ) )
+        if( cnpj.isBlank() || inicio.isAfter( fim ) )
             return ResponseUtils.prepararGetResponse( null );
 
         var pedidos = service.buscarPorRestauranteEntre( cnpj, inicio, fim );
@@ -104,19 +95,10 @@ public class PedidoController {
                                     @RequestParam( "dt_inicio" ) LocalDateTime inicio, 
                                     @RequestParam( "dt_fim" ) LocalDateTime fim ) {
 
-        if( checarCnpjInvalido( cnpj ) || checarIntervaloInvalido( inicio, fim ) )
+        if( cnpj.isBlank() || inicio.isAfter( fim ) )
             return ResponseUtils.prepararGetResponse( null );
 
         var pedidos = service.buscarConcluidosPorRestauranteEntre( cnpj, inicio, fim );
         return ResponseUtils.prepararGetResponse( pedidos );
-    }
-
-    
-    private boolean checarCnpjInvalido( String cnpj ) {
-        return cnpj == null || cnpj.isBlank();
-    }
-
-    private boolean checarIntervaloInvalido( LocalDateTime inicio, LocalDateTime fim ) {
-        return inicio == null || fim == null || inicio.isAfter( fim );
     }
 }

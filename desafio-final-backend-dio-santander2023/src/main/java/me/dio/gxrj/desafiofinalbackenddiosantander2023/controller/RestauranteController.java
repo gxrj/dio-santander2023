@@ -23,9 +23,6 @@ public class RestauranteController {
 
     @PostMapping
     public ResponseEntity<Restaurante> criar( @RequestBody Restaurante restaurante ) {
-        if( restaurante == null )
-            return ResponseUtils.prepararPostResponse( null, null, null );
-
         var restauranteSalvo = restauranteService.salvar( restaurante );
         return ResponseUtils.prepararPostResponse( restauranteSalvo, restauranteSalvo.getId(), HttpStatus.CREATED );
     }

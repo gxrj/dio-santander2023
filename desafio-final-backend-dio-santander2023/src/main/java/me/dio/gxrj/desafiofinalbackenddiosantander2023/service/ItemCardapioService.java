@@ -6,31 +6,31 @@ import java.util.UUID;
 
 import org.springframework.stereotype.Service;
 
-import me.dio.gxrj.desafiofinalbackenddiosantander2023.domain.model.Item;
+import me.dio.gxrj.desafiofinalbackenddiosantander2023.domain.model.ItemCardapio;
 import me.dio.gxrj.desafiofinalbackenddiosantander2023.domain.model.Restaurante;
-import me.dio.gxrj.desafiofinalbackenddiosantander2023.domain.repository.ItemRepository;
+import me.dio.gxrj.desafiofinalbackenddiosantander2023.domain.repository.ItemCardapioRepository;
 import me.dio.gxrj.desafiofinalbackenddiosantander2023.domain.repository.RestauranteRepository;
 
 @Service
-public class ItemService {
+public class ItemCardapioService {
     
-    private final ItemRepository repository;
+    private final ItemCardapioRepository repository;
     private final RestauranteRepository restauranteRepository;
 
-    public ItemService( ItemRepository repository, RestauranteRepository restauranteRepository ) {
+    public ItemCardapioService( ItemCardapioRepository repository, RestauranteRepository restauranteRepository ) {
         this.repository = repository;
         this.restauranteRepository = restauranteRepository;
     }
 
-    public Item salvar( Item item ) {
+    public ItemCardapio salvar( ItemCardapio item ) {
         return repository.save( item );
     }
 
-    public List<Item> salvarMultiplos( List<Item> itens ) {
+    public List<ItemCardapio> salvarMultiplos( List<ItemCardapio> itens ) {
         return repository.saveAll( itens );
     }
 
-    public Item editar( UUID id, Item novoItem ) {
+    public ItemCardapio editar( UUID id, ItemCardapio novoItem ) {
         return repository.findById( id )
                     .map(
                         el -> {
@@ -54,29 +54,29 @@ public class ItemService {
                 .orElse( false );
     }
 
-    public Item encontrarPorId( UUID id ) {
+    public ItemCardapio encontrarPorId( UUID id ) {
         return repository.findById( id ).orElse( null );
     }
 
-    public List<Item> encontrarItensPorDescricao( String descricao ) {
+    public List<ItemCardapio> encontrarItensPorDescricao( String descricao ) {
         return repository.findByDescricao( descricao );
     }
 
-    public List<Item> buscarItensPorFaixaDePreco( Double min, Double max ) {
+    public List<ItemCardapio> buscarItensPorFaixaDePreco( Double min, Double max ) {
         return repository.findByPrecoBetween( min, max );
     }
 
-    public List<Item> encontrarItensPorCnpjRestaurante( String cnpjRestaurante ) {
+    public List<ItemCardapio> encontrarItensPorCnpjRestaurante( String cnpjRestaurante ) {
         var restaurante = restauranteRepository.findByCnpj( cnpjRestaurante ).get();
         return itensPorRestaurante( restaurante );
     }
 
-    public List<Item> encontrarItensPorLoginRestaurante( String loginRestaurante ) {
+    public List<ItemCardapio> encontrarItensPorLoginRestaurante( String loginRestaurante ) {
         var restaurante = restauranteRepository.findByLogin( loginRestaurante ).get();
         return itensPorRestaurante( restaurante );
     }
 
-    private List<Item> itensPorRestaurante( Restaurante restaurante ) {
+    private List<ItemCardapio> itensPorRestaurante( Restaurante restaurante ) {
         if( restaurante == null ) 
             return null;
 

@@ -1,21 +1,21 @@
 package me.dio.gxrj.desafiofinalbackenddiosantander2023.domain.model;
 
+
 import java.time.LocalDateTime;
 
 import java.util.List;
 import java.util.UUID;
 
 import jakarta.persistence.CascadeType;
+import jakarta.persistence.CollectionTable;
 import jakarta.persistence.Column;
+import jakarta.persistence.ElementCollection;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
-import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.JoinTable;
-import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
@@ -32,13 +32,12 @@ public class Pedido {
     @GeneratedValue
     private UUID id;
 
-    @ManyToMany( fetch = FetchType.EAGER )
-    @JoinTable( 
-        name = "itens_pedido", 
-        joinColumns = @JoinColumn( name = "pedido_id" ),
-        inverseJoinColumns = @JoinColumn( name = "item_id" )
+    @ElementCollection
+    @CollectionTable(
+        name = "item_pedido",
+        joinColumns = @JoinColumn( name = "pedido_id" )
     )
-    private List<Item> itens;
+    private List<ItemPedido> itens;
 
     @Enumerated( EnumType.STRING ) 
     @Builder.Default

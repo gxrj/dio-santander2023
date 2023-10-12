@@ -19,7 +19,7 @@ Segue abaixo o diagrama de classes de um MVP.
 ```mermaid
 classDiagram
     class Pedido{
-        -List~Item~ itens
+        -List~ItemPedido~ itens
         -StatusPedido status
         -DateTime data
         -double total
@@ -27,7 +27,13 @@ classDiagram
         -Cliente cliente
         -Restaurante restaurante
     }
-    class Item{
+    class ItemPedido{
+        -Pedido pedido
+        -ItemCardapio itemCardapio
+        -int quantidade
+        -double precoUnd
+    }
+    class ItemCardapio{
         -String descricao
         -double preco
         -bool emEstoque
@@ -116,8 +122,9 @@ classDiagram
     Pedido "1..*" ..> "1" Cliente
     Pedido "1..*" ..> "1" Restaurante
     Pedido ..> StatusPedido
-    Pedido "0..*" --o "1..*" Item
-    Restaurante --* Item
+    Pedido "1" --* "1..*" ItemPedido
+    ItemPedido "0..*" ..> "1" ItemCardapio 
+    Restaurante --* ItemCardapio
     Restaurante --* Funcionamento
     Restaurante ..> Endereco
     Conta <|-- Cliente

@@ -26,7 +26,7 @@ public interface RestauranteRepository extends JpaRepository<Restaurante, UUID> 
     // lista retaurantes da cidade que apresentam o item pesquisado no cardápio
     @Query( """
         select r from Restaurante r 
-        left join Item i 
+        left join ItemCardapio i 
         where i.restaurante = r 
         and i.descricao like %?2
         and r.endereco.bairro.cidade = ?1

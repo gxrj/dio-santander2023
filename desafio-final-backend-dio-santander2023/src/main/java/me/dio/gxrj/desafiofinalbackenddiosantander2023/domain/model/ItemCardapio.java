@@ -17,8 +17,8 @@ import lombok.Setter;
 
 @Entity
 @Builder @Getter @Setter
-@Table( name = "item" )
-public class Item {
+@Table( name = "item_cardapio" )
+public class ItemCardapio {
     
     @Id
     @GeneratedValue

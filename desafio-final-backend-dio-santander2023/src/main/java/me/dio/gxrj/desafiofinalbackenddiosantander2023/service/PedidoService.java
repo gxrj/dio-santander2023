@@ -84,7 +84,7 @@ public class PedidoService {
     private void calcularTotal( Pedido pedido ) {
         var total = pedido.getItens()
             .parallelStream()
-            .map( el -> el.getPreco() )
+            .map( el -> el.getPrecoUnd() * el.getQuantidade() )
             .reduce( 0d, ( x, y ) -> x + y );
         pedido.setTotal( total );
     }

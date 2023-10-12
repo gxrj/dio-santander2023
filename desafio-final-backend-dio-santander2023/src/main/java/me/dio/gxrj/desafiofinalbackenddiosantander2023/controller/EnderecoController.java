@@ -32,25 +32,19 @@ public class EnderecoController {
 
     @PostMapping( "/bairro" )
     public ResponseEntity<Bairro> criarBairro( @RequestBody Bairro bairro ) {
-        if( bairro == null )
-            return ResponseUtils.prepararPostResponse( null, null, null );
-
         var bairroSalvo = enderecoService.salvarBairro( bairro );
         return ResponseUtils.prepararPostResponse( bairroSalvo, bairroSalvo.getId(), HttpStatus.CREATED );
     }
 
     @PostMapping( "/cidade" )
     public ResponseEntity<Cidade> criarCidade( @RequestBody Cidade cidade ) {
-        if( cidade == null )
-            return ResponseUtils.prepararPostResponse( null, null, null );
-
         var cidadeSalva = enderecoService.salvarCidade( cidade );
         return ResponseUtils.prepararPostResponse( cidadeSalva, cidadeSalva.getId(), HttpStatus.CREATED );
     }
 
     @PostMapping( "/bairros" )
     public ResponseEntity<List<Bairro>> criarBairros( @RequestBody List<Bairro> bairros ) {
-        if( bairros == null || bairros.size() == 0 )
+        if( bairros.size() == 0 )
             return ResponseUtils.prepararPostResponse( null, null, null );
 
         var listaBairros = enderecoService.salvarMultiplosBairros( bairros );
@@ -59,7 +53,7 @@ public class EnderecoController {
 
     @PostMapping( "/cidades" )
     public ResponseEntity<List<Cidade>> criarCidades( @RequestBody List<Cidade> cidades ) {
-        if( cidades == null || cidades.size() == 0)
+        if( cidades.size() == 0)
             return ResponseUtils.prepararPostResponse( null, null, null );
 
         var listaCidades = enderecoService.salvarMultiplasCidades( cidades );
@@ -104,36 +98,24 @@ public class EnderecoController {
 
     @PutMapping( "/bairro/{id}" )
     public ResponseEntity<Bairro> editarBairro( @RequestBody Bairro alteracao, @PathVariable Long id ) {
-        if( alteracao == null || id == null )
-            return ResponseUtils.prepararPutResponse( null, null, null );
-
         var bairroSalvo = enderecoService.editarBairro( id, alteracao );
         return ResponseUtils.prepararPutResponse( bairroSalvo, bairroSalvo.getId(), HttpStatus.OK );
     }
 
     @PutMapping( "/cidade/{id}" )
     public ResponseEntity<Cidade> editarCidade( @RequestBody Cidade alteracao, @PathVariable Long id ) {
-        if( alteracao == null || id == null )
-            return ResponseUtils.prepararPutResponse( null, null, null );
-
         var cidadeSalva = enderecoService.editarCidade( id, alteracao );
         return ResponseUtils.prepararPutResponse( cidadeSalva, cidadeSalva.getId(), HttpStatus.OK );
     }
 
     @DeleteMapping( "/bairro/{id}" )
     public ResponseEntity<?> deletarBairro( @PathVariable Long id ) {
-        if( id == null )
-            return ResponseUtils.prepararDeleteResponse( null );
-
         var resultado = enderecoService.excluirBairro( id );
         return ResponseUtils.prepararDeleteResponse( resultado );
     }
 
-    @PutMapping( "/cidade/{id}" )
+    @DeleteMapping( "/cidade/{id}" )
     public ResponseEntity<?> deletarCidade( @PathVariable Long id ) {
-        if( id == null )
-            return ResponseUtils.prepararDeleteResponse( null );
-
         var resultado = enderecoService.excluirCidade( id );
         return ResponseUtils.prepararDeleteResponse( resultado );
     }
