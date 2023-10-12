@@ -10,6 +10,6 @@ import me.dio.gxrj.desafiofinalbackenddiosantander2023.domain.model.Cidade;
 import me.dio.gxrj.desafiofinalbackenddiosantander2023.domain.model.Estado;
 
 public interface CidadeRepository extends JpaRepository<Cidade, Long> {
-    Optional<Cidade> findByNome( String nomeCidade );
+    Optional<List<Cidade>> findByNomeLike( String nomeCidade );
     List<Cidade> findByEstado( Estado estado );
 }

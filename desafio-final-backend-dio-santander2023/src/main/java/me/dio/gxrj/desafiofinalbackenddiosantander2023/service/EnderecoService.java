@@ -26,16 +26,16 @@ public class EnderecoService {
         return bairroRepository.save( bairro );
     }
 
-    public void salvarCidade( Cidade cidade ) {
-        cidadeRepository.save( cidade );
+    public Cidade salvarCidade( Cidade cidade ) {
+        return cidadeRepository.save( cidade );
     }
 
-    public void salvarMultiplosBairros( List<Bairro> bairros ) {
-        bairroRepository.saveAll( bairros );
+    public List<Bairro> salvarMultiplosBairros( List<Bairro> bairros ) {
+        return bairroRepository.saveAll( bairros );
     }
 
-    public void salvarMultiplasCidades( List<Cidade> cidades ) {
-        cidadeRepository.saveAll( cidades );
+    public List<Cidade> salvarMultiplasCidades( List<Cidade> cidades ) {
+        return cidadeRepository.saveAll( cidades );
     }
 
     public Bairro encontrarBairroPorId( Long id ) {
@@ -46,27 +46,65 @@ public class EnderecoService {
         return cidadeRepository.findById( id ).orElse( null );
     }
 
+    public List<Bairro> encontrarBairroPorNome( String nomeBairro ) {
+        return bairroRepository.findByNomeLike( nomeBairro ).orElse( null );
+    }
+
+    public List<Cidade> encontrarCidadePorNome( String nomeCidade ) {
+        return cidadeRepository.findByNomeLike( nomeCidade ).orElse( null );
+    }
+
     public List<Bairro> encontrarBairrosPorCidade( String nomeCidade ) {
         return bairroRepository.findByCidade_Nome( nomeCidade );
-    }
-
-    public Bairro encontrarBairro( String nomeBairro ) {
-        return bairroRepository.findByNome( nomeBairro ).orElse( null );
-    }
-
-    public Cidade encontrarCidadePorNome( String nomeCidade ) {
-        return cidadeRepository.findByNome( nomeCidade ).orElse( null );
     }
 
     public List<Cidade> encontrarCidadesPorEstado( String nomeEstado ) {
         return cidadeRepository.findByEstado( Estado.fromString( nomeEstado ) );
     }
 
-    public void excluirBairro( Bairro bairro ) {
-        bairroRepository.delete( bairro );
+    public Bairro editarBairro( Long bairroId, Bairro novoBairro ) {
+        return bairroRepository.findById( bairroId )
+                            .map( 
+                                el -> {
+                                    el.setNome( novoBairro.getNome() );
+                                    el.setCidade( novoBairro.getCidade() );
+                                    return el;
+                                } 
+                            )
+                            .orElse( null );
     }
 
-    public void excluirCidade( Cidade cidade ) {
-        cidadeRepository.delete( cidade );
+    public Cidade editarCidade( Long cidadeId, Cidade novaCidade ) {
+        return cidadeRepository.findById( cidadeId )
+                            .map( 
+                                el -> {
+                                    el.setNome( novaCidade.getNome() );
+                                    el.setEstado( novaCidade.getEstado() );
+                                    return el;
+                                } 
+                            )
+                            .orElse( null );
+    }
+
+    public boolean excluirBairro( Long bairroId ) {
+        return bairroRepository.findById( bairroId )
+                .map( 
+                    el -> {
+                        bairroRepository.delete( el );
+                        return true;
+                    } 
+                )
+                .orElse( false );
+    }
+
+    public boolean excluirCidade( Long cidadeId ) {
+        return cidadeRepository.findById( cidadeId )
+                .map( 
+                    el -> {
+                        cidadeRepository.delete( el );
+                        return true;
+                    }
+                )
+                .orElse( false );
     }
 }
