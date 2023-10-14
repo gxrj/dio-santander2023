@@ -8,5 +8,5 @@ import me.dio.gxrj.desafiofinalbackenddiosantander2023.domain.model.Bairro;
 
 public interface BairroRepository extends JpaRepository<Bairro, Long> {
     List<Bairro> findByNomeContainingIgnoreCase( String nomeBairro );
-    List<Bairro> findByCidade_Nome( String nomeCidade );
+    List<Bairro> findByCidade_NomeIgnoreCase( String nomeCidade );
 }

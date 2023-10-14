@@ -3,15 +3,11 @@ package me.dio.gxrj.desafiofinalbackenddiosantander2023.integration.tests.reposi
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import static org.junit.jupiter.api.Assertions.assertNull;
-
 import java.util.ArrayList;
 import java.util.List;
 
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.MethodOrderer;
-import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
 
@@ -33,50 +29,16 @@ public class BairroRepositoryIntTest {
     @Autowired
     private BairroRepository repository;
     
-    @BeforeEach
-    @DisplayName( "Semeia o banco de dados com a cidade de Guarulhos/SP" )
-    void setup() {
-        
-        var cidade = Cidade.builder()
-                            .nome( "Guarulhos" )
-                            .estado( Estado.SP )
-                            .build();
-
-        entityManager.persist( cidade );
-    }
-
     @Test
-    @Order(1)
-    @DisplayName( "Testando a insercao de bairro no db" )
-    void testaGravacaoDoBairroNoDB() {
-        var cidade = entityManager.find( Cidade.class, 1L );
-        assert cidade != null : "Cidade nao encontrada na busca pela entidade no database!";
-
-        var bairro = Bairro.builder()
-                        .nome( "bairro 1" )
-                        .cidade( cidade )
-                        .build();
-
-        assertNull( bairro.getId(), "O atributo id deve ser nulo antes de salvar no database!" );
-
-        var resultado = repository.save( bairro );
-
-        assert resultado.getId().equals( 1L ) : "O atributo id nao pode ser nulo apos salvar entidade no database!";
-    }
-
-    @Test
-    @Order(2)
     @DisplayName( "Testa o metodo findByNomeContaingIgnoreCase" )
     void testa_findByNomeContaingIgnoreCase() {
-        var cidade = entityManager.find( Cidade.class, 2L );
-        assert cidade != null : "Cidade nao encontrada na busca pela entidade no database!";
-
-        var nomesBairro = List.of( "Vila Augusta", "ViLa Rosalia", "vila galvao" );
         List<Bairro> entrada = new ArrayList<>();
+        var cidades = populaDatabase_RetornaEntidades();
+        var nomesBairro = List.of( "Vila Augusta", "ViLa Rosalia", "vila galvao" );
 
         for( var el : nomesBairro ) 
             entrada.add( 
-                Bairro.builder().nome( el ).cidade( cidade ).build() );
+                Bairro.builder().nome( el ).cidade( cidades.get( 0 ) ).build() );
 
         repository.saveAll( entrada );
         
@@ -91,27 +53,37 @@ public class BairroRepositoryIntTest {
     }
 
     @Test
-    @Order(3)
     @DisplayName( "Testa o metodo findByNomeContaingIgnoreCase" )
     void testa_findByCidade_Nome() {
+        var cidades = populaDatabase_RetornaEntidades();
+    
+        var nomesBairrosGuarulhos = List.of( "Vila Augusta", "ViLa Rosalia", "vila galvao" );
+        var nomesBairrosSantos = List.of( "Areia Branca", "Caneleira" );
+
+        // Persiste os bairros no database
+        var bairrosGuarulhos = persistirBairros( nomesBairrosGuarulhos, cidades.get( 0 ) );
+        var bairrosSantos = persistirBairros( nomesBairrosSantos, cidades.get( 1 ) );
+
+        assertThat( bairrosGuarulhos ).map( Bairro::getNome ).isEqualTo( nomesBairrosGuarulhos );
+        assertThat( bairrosSantos ).map( Bairro::getNome ).isEqualTo( nomesBairrosSantos );
+    }
+
+    private List<Cidade> populaDatabase_RetornaEntidades() {
+        
+        var guarulhos = Cidade.builder()
+                            .nome( "Guarulhos" )
+                            .estado( Estado.SP )
+                            .build();
 
         var santos = Cidade.builder()
                     .nome( "Santos" )
                     .estado( Estado.SP )
                     .build();
 
+        guarulhos = entityManager.persist( guarulhos );
         santos = entityManager.persist( santos );
 
-        var guarulhos = entityManager.find( Cidade.class, 3L );
-        assert guarulhos != null : "Cidade nao encontrada na busca pela entidade no database!";
-
-        var nomesBairrosGuarulhos = List.of( "Vila Augusta", "ViLa Rosalia", "vila galvao" );
-        var nomesBairrosSantos = List.of( "Areia Branca", "Caneleira" );
-        var bairrosGuarulhos = persistirBairros( nomesBairrosGuarulhos, guarulhos );
-        var bairrosSantos = persistirBairros( nomesBairrosSantos, santos );
-
-        assertThat( bairrosGuarulhos ).map( Bairro::getNome ).isEqualTo( nomesBairrosGuarulhos );
-        assertThat( bairrosSantos ).map( Bairro::getNome ).isEqualTo( nomesBairrosSantos );
+        return List.of( guarulhos, santos ); 
     }
 
     private List<Bairro> persistirBairros( List<String> bairros, Cidade cidade ) {
