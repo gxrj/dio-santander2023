@@ -32,7 +32,7 @@ public class CidadeRepositoryIntTest {
     }
 
     @Test
-    @DisplayName( "Testa o metodo " )
+    @DisplayName( "Testa o metodo findByEstado" )
     void test_findByEstado () {
         popularDatabase();
 
