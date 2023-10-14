@@ -47,11 +47,11 @@ public class EnderecoService {
     }
 
     public List<Bairro> encontrarBairroPorNome( String nomeBairro ) {
-        return bairroRepository.findByNomeLike( nomeBairro ).orElse( null );
+        return bairroRepository.findByNomeContainingIgnoreCase( nomeBairro );
     }
 
     public List<Cidade> encontrarCidadePorNome( String nomeCidade ) {
-        return cidadeRepository.findByNomeLike( nomeCidade ).orElse( null );
+        return cidadeRepository.findByNomeContainingIgnoreCase( nomeCidade );
     }
 
     public List<Bairro> encontrarBairrosPorCidade( String nomeCidade ) {
