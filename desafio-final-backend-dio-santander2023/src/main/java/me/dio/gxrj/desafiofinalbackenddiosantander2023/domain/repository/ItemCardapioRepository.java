@@ -10,7 +10,7 @@ import me.dio.gxrj.desafiofinalbackenddiosantander2023.domain.model.ItemCardapio
 import me.dio.gxrj.desafiofinalbackenddiosantander2023.domain.model.Restaurante;
 
 public interface ItemCardapioRepository extends JpaRepository<ItemCardapio, UUID> {
-    List<ItemCardapio> findByDescricao( String descricao );
+    List<ItemCardapio> findByDescricaoIgnoreCase( String descricao );
     List<ItemCardapio> findByRestaurante( Restaurante restaurante );
     List<ItemCardapio> findByPrecoBetween( Double min, Double max ); // Todo: Testar
 }

@@ -22,20 +22,23 @@ public class Restaurante extends Conta {
     @Column( nullable = false )
     private String cnpj;
 
-    @Column( nullable = false )
+    @Column
     private String descricao;
+
+    @Column( name = "funciona_em_feriados", columnDefinition = "boolean default false" )
+    private Boolean funcionaFeriados;
 
     @ElementCollection
     @CollectionTable(
-        name = "restaurante_funcionamento",
+        name = "restaurante_expediente",
         joinColumns = @JoinColumn( name = "restaurante_id" )
     )
-    private List<Funcionamento> horarioFuncionamento;
+    private List<ExpedienteDiario> expediente;
 
     @Builder 
     public Restaurante( 
         String nome, String login, String senha, Endereco endereco, 
-        String cnpj, String descricao, List<Funcionamento> horarioFuncionamento ) {
+        String cnpj, String descricao, List<ExpedienteDiario> expediente ) {
 
             this.nome = nome;
             this.login = login;
@@ -43,6 +46,6 @@ public class Restaurante extends Conta {
             this.endereco = endereco;
             this.cnpj = cnpj;
             this.descricao = descricao;
-            this.horarioFuncionamento = horarioFuncionamento;
+            this.expediente = expediente;
     }
 }

@@ -18,38 +18,29 @@ import me.dio.gxrj.desafiofinalbackenddiosantander2023.domain.model.Restaurante;
 public interface RestauranteRepository extends JpaRepository<Restaurante, UUID> {
     Optional<Restaurante> findByCnpj( String cnpj );
     Optional<Restaurante> findByLogin( String login );
-    List<Restaurante> findByNomeLike( String nome );
-    List<Restaurante> findByEndereco_Bairro_Nome( String nomeBairro );
-    List<Restaurante> findByEndereco_Bairro_Cidade_Nome( String nomeCidade );
+    List<Restaurante> findByNomeContainingIgnoreCase( String nome );
+    List<Restaurante> findByEndereco_Bairro_NomeIgnoreCase( String nomeBairro );
+    List<Restaurante> findByEndereco_Bairro_Cidade_NomeIgnoreCase( String nomeCidade );
 
     // lista retaurantes da cidade que apresentam o item pesquisado no cardápio
     @Query( """
         select r from Restaurante r 
-        left join ItemCardapio i 
-        where i.restaurante = r 
-        and i.descricao like %?2
-        and r.endereco.bairro.cidade = ?1
+        left join ItemCardapio i on i.restaurante = r 
+        where r.endereco.bairro.cidade = ?1
+        and lower( i.descricao ) like lower( concat('%', ?2, '%') )
     """ )
     List<Restaurante> findByDescricaoItemCardapio( Cidade cidade, String descricaoItem );
 
     // lista retaurantes da cidade abertos
     @Query( """
         select r from Restaurante r 
-        join r.horarioFuncionamento f 
-        where f.dia = ?2 
+        right join r.expediente e 
+        where e.dia = ?2 
         and r.endereco.bairro.cidade = ?1
-        and f.horarioFechamento > ?3
+        and ( case
+                when ( e.inicio <= e.fim  ) then ( ?3 between e.inicio and e.fim ) 
+                when ( e.inicio > e.fim ) then ( ?3 not between e.fim and e.inicio )
+            end )
     """ )
-    List<Restaurante> findByAbertos( Cidade cidade, DayOfWeek dia, LocalTime horaAtual );
-
-    // lista restaurantes da cidade que vão abrir
-    @Query( """
-        select r from Restaurante r 
-        join r.horarioFuncionamento f 
-        where f.dia = ?2 
-        and r.endereco.bairro.cidade = ?1
-        and f.horarioAbertura >= ?3
-        order by f.horarioAbertura
-    """ )
-    List<Restaurante> findByAbertosEmBreve( Cidade cidade, DayOfWeek dia, LocalTime hora, Pageable limit );
+    List<Restaurante> findByAbertos( Cidade cidade, DayOfWeek dia, LocalTime horaAtual, Pageable limite );
 }

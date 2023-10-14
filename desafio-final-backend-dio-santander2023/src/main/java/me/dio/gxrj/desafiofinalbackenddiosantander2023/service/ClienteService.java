@@ -12,6 +12,7 @@ import me.dio.gxrj.desafiofinalbackenddiosantander2023.domain.repository.Cliente
 public class ClienteService {
  
     private final ClienteRepository repository;
+    // Todo: injetar passwordEncoder
 
     public ClienteService( ClienteRepository  repository ) {
         this.repository = repository;

@@ -59,7 +59,7 @@ public class ItemCardapioService {
     }
 
     public List<ItemCardapio> encontrarItensPorDescricao( String descricao ) {
-        return repository.findByDescricao( descricao );
+        return repository.findByDescricaoIgnoreCase( descricao );
     }
 
     public List<ItemCardapio> buscarItensPorFaixaDePreco( Double min, Double max ) {
