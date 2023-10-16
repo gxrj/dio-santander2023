@@ -39,7 +39,7 @@ public class Pedido {
     )
     private List<ItemPedido> itens;
 
-    @Enumerated( EnumType.STRING ) 
+    @Enumerated( EnumType.STRING )//Elege as constantes literais ( nesse caso, PENDENTE e CONCLUIDO ) para sinalizar o valor
     @Builder.Default
     private StatusPedido status = StatusPedido.PENDENTE;
 
