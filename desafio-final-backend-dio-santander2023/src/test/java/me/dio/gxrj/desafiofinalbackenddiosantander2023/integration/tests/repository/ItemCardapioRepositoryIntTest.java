@@ -72,13 +72,12 @@ public class ItemCardapioRepositoryIntTest {
         var refriPizzaria = itemBuilder.restaurante( restaurantes.get(0) ).preco( 7.80 ).build();
         var refriRestaurante = itemBuilder.restaurante( restaurantes.get(1) ).preco( 5.89 ).build();
         var refriLanchonete = itemBuilder.restaurante( restaurantes.get(2) ).preco( 3.20 ).build();
-            
-        entityManager.persist( pizzaPortuesa );
-        entityManager.persist( churrasco );
-        entityManager.persist( hamburguer );
-        entityManager.persist( refriPizzaria );
-        entityManager.persist( refriRestaurante );
-        entityManager.persist( refriLanchonete );
+        
+        var cardapios = List.of( 
+                            pizzaPortuesa, churrasco, hamburguer, 
+                            refriPizzaria, refriRestaurante, refriLanchonete );
+
+        repository.saveAll( cardapios );
     }
 
     private List<Restaurante> gerarRestaurantes() {

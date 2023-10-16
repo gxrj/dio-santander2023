@@ -109,13 +109,13 @@ classDiagram
     class Restaurante{
         -String cnpj
         -String descricao
-        -List~Funcionamento~ horarioFuncionamento
-    }
-    class Funcionamento{
-        -DayOfWeek dia
-        -LocalTime horarioAbertura
-        -LocalTime horarioFechamento
         -bool funcionaFeriados
+        -List~ExpedienteDiario~ expediente
+    }
+    class ExpedienteDiario{
+        -DayOfWeek dia
+        -LocalTime inicio
+        -LocalTime fim
         -Restaurante restaurante
     }
 
@@ -125,7 +125,7 @@ classDiagram
     Pedido "1" --* "1..*" ItemPedido
     ItemPedido "0..*" ..> "1" ItemCardapio 
     Restaurante --* ItemCardapio
-    Restaurante --* Funcionamento
+    Restaurante --* ExpedienteDiario
     Restaurante ..> Endereco
     Conta <|-- Cliente
     Conta <|-- Restaurante

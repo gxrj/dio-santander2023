@@ -13,11 +13,24 @@ import me.dio.gxrj.desafiofinalbackenddiosantander2023.domain.model.Pedido;
 
 public interface PedidoRepository extends JpaRepository<Pedido, UUID> {
 
-    List<Pedido> findByCliente_Cpf( String cpfString );
+    /**
+     * Lista todos os pedidos feitos pelo cliente, com pgto em aberto ou confirmado(pedente ou concluido)
+     * @param String cpfCliente 
+     * @return List<Pedido> pedidos
+     */
+    List<Pedido> findByCliente_Cpf( String cpfCliente );
+    /**
+     * Lista todos os pedidos feitos pelo cliente, com pgto em aberto ou confirmado(pedente ou concluido)
+     * @param Cliente cliente
+     * @return List<Pedido> pedidos
+     */
     List<Pedido> findByCliente( Cliente cliente );
 
 
-    // lista pedidos feitos no restaurante em data intervalo 
+    /**
+     * Lista pedidos feitos no restaurante em data intervalo e com o pgto confirmado.
+     * Pedidos com pgto pendente são ignorados
+     */
     @Query( """
         select p from Pedido p 
         where p.restaurante.cnpj = ?1 
@@ -28,22 +41,26 @@ public interface PedidoRepository extends JpaRepository<Pedido, UUID> {
                             String cnpjRestaurante, LocalDateTime incio, LocalDateTime fim );
 
 
-    // lista pedidos pendentes no restaurante
+    /** Lista pedidos no restaurante em data intervalo com o pgto confirmado e status pendentes
+     * (não há interesse em listar pedidos com o pagamento em aberto para o restaurante).
+     */
     @Query( """
         select p from Pedido p 
         where p.restaurante.cnpj = ?1 
-        and p.status = 'pendente' 
+        and p.status = 'PENDENTE'
         and p.pagamentoConfirmado = true
     """ )
     List<Pedido> findPendentesByRestaurante_Cnpj( String cnpjRestaurante );
 
 
-    // lista pedidos concluidos no restaurante por data
+    /** Lista pedidos no restaurante em data intervalo com o status concluido,
+     * (para que um pedido seja concluido é necessário que seu pgto seja confirmado)
+     */
     @Query( """
         select p from Pedido p 
         where p.restaurante.cnpj = ?1 
         and p.data between ?2 and ?3 
-        and p.status = 'concluido'
+        and p.status = 'CONCLUIDO'
     """ )
     List<Pedido> findConcluidosByRestaurante_CnpjBetween( 
                         String cnpjRestaurante, LocalDateTime incio, LocalDateTime fim );
