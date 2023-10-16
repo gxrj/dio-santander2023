@@ -23,4 +23,6 @@ public class Bairro extends Localidade {
         this.nome = nome;
         this.cidade = cidade;
     }
+
+    public Bairro() {}
 }

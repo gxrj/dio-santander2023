@@ -48,4 +48,6 @@ public class Restaurante extends Conta {
             this.descricao = descricao;
             this.expediente = expediente;
     }
+
+    public Restaurante() {}
 }

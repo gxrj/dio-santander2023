@@ -4,6 +4,7 @@ package me.dio.gxrj.desafiofinalbackenddiosantander2023.controller;
 import java.util.UUID;
 
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -22,7 +23,11 @@ import me.dio.gxrj.desafiofinalbackenddiosantander2023.utils.ResponseUtils;
 // Todo: Avaliar a substituíção de ResponseUtils por org.springframework.data.rest.webmvc.ControllerUtils
 
 @RestController
-@RequestMapping( "/cliente" )
+@RequestMapping( 
+    path = "/cliente", 
+    consumes =  MediaType.APPLICATION_JSON_VALUE,
+    produces = MediaType.APPLICATION_JSON_VALUE 
+)
 public class ClienteController {
     
     private final ClienteService clienteService;

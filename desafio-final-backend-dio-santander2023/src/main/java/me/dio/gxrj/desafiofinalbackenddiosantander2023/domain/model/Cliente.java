@@ -40,4 +40,6 @@ public class Cliente extends Conta {
             this.cpf = cpf;
             this.telefones = telefones;
     }
+
+    public Cliente() {}
 }

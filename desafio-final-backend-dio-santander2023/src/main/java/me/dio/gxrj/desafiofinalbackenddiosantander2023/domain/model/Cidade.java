@@ -24,4 +24,6 @@ public class Cidade extends Localidade {
         this.nome = nome;
         this.estado = estado;
     }
+
+    public Cidade() {}
 }
