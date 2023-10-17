@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import me.dio.gxrj.desafiofinalbackenddiosantander2023.domain.model.Cliente;
@@ -24,7 +25,7 @@ import me.dio.gxrj.desafiofinalbackenddiosantander2023.utils.ResponseUtils;
 
 @RestController
 @RequestMapping( 
-    path = "/cliente", 
+    path = "/clientes", 
     consumes =  MediaType.APPLICATION_JSON_VALUE,
     produces = MediaType.APPLICATION_JSON_VALUE 
 )
@@ -54,8 +55,8 @@ public class ClienteController {
         return ResponseUtils.prepararGetResponse( cliente );
     }
 
-    @GetMapping( "/{login}" )
-    public ResponseEntity<Cliente> obterPorLogin( @PathVariable String login ) {
+    @GetMapping
+    public ResponseEntity<Cliente> obterPorLogin( @RequestParam( "login" ) String login ) {
         var cliente = clienteService.encontrarPorLogin( login );
         return ResponseUtils.prepararGetResponse( cliente );
     }

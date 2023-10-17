@@ -38,7 +38,6 @@ public class ClienteService {
         return repository.findById( id )
                     .map( 
                         el -> {
-                            el.setCpf( clienteAtualizado.getCpf() );
                             el.setNome( clienteAtualizado.getNome() );
                             el.setTelefones( clienteAtualizado.getTelefones() );
                             el.setEndereco( clienteAtualizado.getEndereco() );

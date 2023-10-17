@@ -9,6 +9,7 @@ import jakarta.persistence.MappedSuperclass;
 
 import java.util.UUID;
 
+import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -23,6 +24,7 @@ public abstract class Conta {
     @Column( nullable = false )
     protected String senha;
 
+    @Setter( AccessLevel.NONE )
     @Column( nullable = false, unique = true )
     protected String login;
 

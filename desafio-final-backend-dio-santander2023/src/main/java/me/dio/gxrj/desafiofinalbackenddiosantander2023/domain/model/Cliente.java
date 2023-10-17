@@ -10,6 +10,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.Table;
 
+import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
@@ -19,6 +20,7 @@ import lombok.Setter;
 @Table( name = "cliente" )
 public class Cliente extends Conta {
 
+    @Setter( AccessLevel.NONE )
     @Column( nullable = false, unique = true )
     private String cpf;
 

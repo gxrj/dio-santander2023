@@ -31,7 +31,6 @@ public class RestauranteService {
                 .map(
                     el -> {
                         el.setNome( restaurante.getNome() );
-                        el.setCnpj( restaurante.getCnpj() );
                         el.setSenha( restaurante.getSenha() );
                         el.setEndereco( restaurante.getEndereco() );
                         el.setDescricao( restaurante.getDescricao() );
