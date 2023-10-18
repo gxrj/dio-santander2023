@@ -17,10 +17,10 @@ import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMock
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import jakarta.transaction.Transactional;
 import me.dio.gxrj.desafiofinalbackenddiosantander2023.domain.model.Bairro;
 import me.dio.gxrj.desafiofinalbackenddiosantander2023.domain.model.Cidade;
 import me.dio.gxrj.desafiofinalbackenddiosantander2023.domain.model.Cliente;
@@ -30,6 +30,7 @@ import me.dio.gxrj.desafiofinalbackenddiosantander2023.domain.model.Telefone;
 import me.dio.gxrj.desafiofinalbackenddiosantander2023.service.ClienteService;
 import me.dio.gxrj.desafiofinalbackenddiosantander2023.service.EnderecoService;
 
+@Transactional
 @SpringBootTest
 @AutoConfigureMockMvc
 public class ClienteControllerIntTest {
@@ -77,10 +78,8 @@ public class ClienteControllerIntTest {
     }
 
     @Test
-    @Transactional
     @DisplayName( "Testa o endpoint http POST '/clientes'" )
     void testaEndpointParaCriacaoDeCliente() throws Exception {
-        assert cliente.getCpf().equalsIgnoreCase( "01597243103" ) : "Falha doida";
         var entidadeJson = mapper.writeValueAsString( cliente );
 
         mvc.perform( 
@@ -92,7 +91,6 @@ public class ClienteControllerIntTest {
     }
 
     @Test
-    @Transactional
     @DisplayName( "Testa o endpoint http PUT '/clientes/{id}'" )
     void testaEnpointParaEdicaoDeCliente() throws Exception {
         cliente = clienteService.criar( cliente );
@@ -109,7 +107,6 @@ public class ClienteControllerIntTest {
     }
 
     @Test
-    @Transactional
     @DisplayName( "Testa o endepont http GET '/clientes/{id}'" )
     void testaEndpointParaObterClientePorId() throws Exception {
         cliente = clienteService.criar( cliente );
@@ -122,7 +119,6 @@ public class ClienteControllerIntTest {
     }
 
     @Test
-    @Transactional
     @DisplayName( "Testa o endpoint http DELETE '/clientes/{id}'" )
     void testaEndpointParaExcluirCliente() throws Exception {
         cliente = clienteService.criar( cliente );

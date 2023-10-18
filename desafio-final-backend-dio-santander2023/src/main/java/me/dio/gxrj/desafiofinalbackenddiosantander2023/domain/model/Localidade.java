@@ -1,6 +1,8 @@
 package me.dio.gxrj.desafiofinalbackenddiosantander2023.domain.model;
 
 
+import java.io.Serializable;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
@@ -11,7 +13,7 @@ import lombok.Setter;
 
 @Getter @Setter
 @MappedSuperclass
-public abstract class Localidade {
+public abstract class Localidade implements Serializable {
 
     @Id 
     @GeneratedValue
