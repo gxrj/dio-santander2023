@@ -17,7 +17,7 @@ Trata-se de uma aplicação multi-tenant em que o database e o schema são compa
 
 - Foram realizados testes de integralção em todos os repositórios.
 
-- Os testes de integração nos endpoints estão em andamento o que impacta no prazo de inclusão de mecanismos de autenticação/autorização.
+- Os testes end-2-end estão em andamento o que impacta no prazo de inclusão de mecanismos de autenticação/autorização.
 
 Segue abaixo o diagrama de classes de um MVP.
 
