@@ -13,6 +13,12 @@ Trata-se de uma aplicação multi-tenant em que o database e o schema são compa
 
 - Aspectos de geolocalização como latitude, longitude e por consequência raio de distância foram desconsiderados também devido ao tempo disponível e complexidade.
 
+- Apesar da adição dos atributos login e senha na classe Conta este MVP não contempla a inclusão de autenticação e autorização.( Pelo menos até antes do prazo de finalização do bootcamp 22/10/2023 )
+
+- Foram realizados testes de integralção em todos os repositórios.
+
+- Os testes de integração nos endpoints estão em andamento o que impacta no prazo de inclusão de mecanismos de autenticação/autorização.
+
 Segue abaixo o diagrama de classes de um MVP.
 
 ### Diagrama de classes
